@@ -1,10 +1,10 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+USE_CELERY = False
+
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR + '/emails/'
-
-USE_CELERY = False
 
 # For testing real send
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -15,9 +15,9 @@ USE_CELERY = False
 #EMAIL_USE_TLS = True
 
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 import dj_database_url
-
 # customize database configuration
 DATABASES = {'default': dj_database_url.config(default='postgres://familybridge:buildbridge@localhost:5432/familybridge')}
 
@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'compressor',
     'djcelery',
     'django_tables2',
+    'core',
 )
 
 TEMPLATE_DIRS = (
@@ -80,6 +81,7 @@ DEBUG_TOOLBAR_PANELS = (
 MEDIA_ROOT = BASE_DIR + '/sitemedia/'
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 CACHES = {
     'default': {

@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'compressor',
     'djcelery',
     'django_tables2',
+    'core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,6 +114,7 @@ AWS_SECRET_ACCESS_KEY = 'oFioAHG5AvXQGEbOd3rGFvHqs+WXTYAIAfoDpjIk'
 if DEPLOY:
   AWS_STORAGE_BUCKET_NAME = 'cdn.prod.familybridge.redstar.com'
 else:
+  # assets for staging server
   AWS_STORAGE_BUCKET_NAME = 'cdn.staging.familybridge.redstar.com'
 
 MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
@@ -132,6 +134,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+AUTH_USER_MODEL = 'core.EmailUser'
+
+# keep this at the bottom
 try:
   from familybridge.settings_local import *
   print "Imported local settings"
