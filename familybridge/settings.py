@@ -31,7 +31,7 @@ else:
   DEBUG = False
 
 try:
-  from winedora.settings_debug import *
+  from familybridge.settings_debug import *
 except Exception as e:
   print e
 
@@ -124,15 +124,17 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
     'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
 try:
-  from winedora.settings_local import *
+  from familybridge.settings_local import *
+  print "Imported local settings"
 except Exception as e:
   print e
 
