@@ -143,3 +143,8 @@ try:
 except Exception as e:
   print e
 
+try:
+  from familybridge.settings_project import *
+  print "Imported project specific settings"
+except Exception as e:
+  print e
