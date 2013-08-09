@@ -5,3 +5,4 @@ settings_local.py
 settings_debug.py
 staticfiles
 venv
+familybridge.sqlite

@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'djcelery',
     'django_tables2',
     'core',
+    'mobile',
 )
 
 MIDDLEWARE_CLASSES = (
