@@ -1,61 +1,45 @@
 {% extends "core/base.html" %}
+{% load staticfiles %}
 
+{% block background %}
+  <div id="bg"><img src="{% static "img/background.jpg" %}"></div>
+{% endblock %}
 
 {% block content %}
-  {% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
 
-  {% if user.is_authenticated %}
-    {{ user.email }} is logged in
-  {% else %}
-    <ul>
-      <li><i class="icon-krw icon-4x"></i> icon-krw </li>
-      <li><i class="icon-large icon-comment"></i> icon-commet </li>
-      <li><i class="glyphicon glyphicon-glass"></i> glyphicon-glass </li>
-    </ul>
-    <h1>Sign in</h1>
-    <form method="POST" action="{% url 'django.contrib.auth.views.login' %}">
-      {% csrf_token %}
-      <table>
-      <tr>
-          <td>{{ form.username.label_tag }}</td>
-          <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-          <td>{{ form.password.label_tag }}</td>
-          <td>{{ form.password }}</td>
-      </tr>
-      </table>
+  <!-- body content -->
+  <div class="row">
 
-      <input type="submit" value="login" />
-      <input type="hidden" name="next" value="{{ next }}" />
-    </form>
+      <div id="center-sign-up-form">
+        <h1>Join, Share and Care</h1>
+        <form class="{% if signup_form.errors %}has-error {% endif %}" method="POST" action="{% url 'core.views.sign_up' %}">
+          {% csrf_token %}
+          {% if signup_form.errors %}
+            <div class="alert alert-danger">
+            {{ signup_form.errors }}
+            </div>
+          {% endif %}
+          <table>
+          <tr>
+              <td>{{ signup_form.email.label_tag }}</td>
+              <td>{{ signup_form.email }}</td>
+          </tr>
+          <tr>
+              <td>{{ signup_form.password1.label_tag }}</td>
+              <td>{{ signup_form.password1 }}</td>
+          </tr>
+           <tr>
+              <td>{{ signup_form.password2.label_tag }}</td>
+              <td>{{ signup_form.password2 }}</td>
+          </tr>     
+          </table>
+          <p>&nbsp;</p>
+          <input type="submit" class="col-lg-offset-9 btn btn-default btn-lg" value="Sign Up" />
+          <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      </div>
 
-    <h1>Sign up</h1>
-    <form method="POST" action="{% url 'core.views.sign_up' %}">
-      {% csrf_token %}
-      {% if signup_form.errors %}
-        {{ signup_form.errors }}
-      {% endif %}
-      <table>
-      <tr>
-          <td>{{ signup_form.email.label_tag }}</td>
-          <td>{{ signup_form.email }}</td>
-      </tr>
-      <tr>
-          <td>{{ signup_form.password1.label_tag }}</td>
-          <td>{{ signup_form.password1 }}</td>
-      </tr>
-       <tr>
-          <td>{{ signup_form.password2.label_tag }}</td>
-          <td>{{ signup_form.password2 }}</td>
-      </tr>     
-      </table>
-
-      <input type="submit" value="signup" />
-      <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-  {% endif %}
+  </div>
 
 {% endblock %}
+

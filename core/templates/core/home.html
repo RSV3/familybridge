@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+Family Bridge Home
+{% endblock %}
+
+{% block content %}
+
+  {% if user.is_authenticated %}
+    {{ user.email }} is logged in
+  {% endif %}
+{% endblock %}

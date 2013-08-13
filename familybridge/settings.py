@@ -37,40 +37,37 @@ except Exception as e:
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # Uncomment the next line to enable admin documentation:
-    'django.contrib.admindocs',
-    #'south',
-    'debug_toolbar',
-    'sorl.thumbnail',
-    #'storages',
-    's3_folder_storage',
-    'gunicorn',
-    'compressor',
-    'djcelery',
-    'django_tables2',
-    'core',
-    'mobile',
+  'django.contrib.admin',
+  'django.contrib.auth',
+  'django.contrib.contenttypes',
+  'django.contrib.sessions',
+  'django.contrib.messages',
+  'django.contrib.staticfiles',
+  # Uncomment the next line to enable admin documentation:
+  'django.contrib.admindocs',
+  #'south',
+  'debug_toolbar',
+  'sorl.thumbnail',
+  #'storages',
+  's3_folder_storage',
+  'gunicorn',
+  'compressor',
+  'djcelery',
+  'django_tables2',
+  'core',
+  'mobile',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+  'django.contrib.sessions.middleware.SessionMiddleware',
+  'django.middleware.common.CommonMiddleware',
+  'django.middleware.csrf.CsrfViewMiddleware',
+  'django.contrib.auth.middleware.AuthenticationMiddleware',
+  'django.contrib.messages.middleware.MessageMiddleware',
+  'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'familybridge.urls'
@@ -102,6 +99,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+import django.conf.global_settings as DEFAULT_SETTINGS
+
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+  "django.core.context_processors.request",
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
@@ -125,14 +127,20 @@ STATIC_URL = '//s3.amazonaws.com/%s/static/' % AWS_STORAGE_BUCKET_NAME
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    'compressor.finders.CompressorFinder',
+  'django.contrib.staticfiles.finders.FileSystemFinder',
+  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+  #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+  'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+  os.path.join(BASE_DIR, "static"),
+)
+
+ADMINS = (
+  ('Kwan Lee', 'kwan@redstar.com'),
+  ('David Rabinowitz', 'david@redstar.com'),
+  ('Gemma Sole', 'gemma@redstar.com'),
 )
 
 AUTH_USER_MODEL = 'core.EmailUser'

@@ -1,17 +1,25 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
-from core.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from core.forms import TopLoginForm, FrontSignUpForm
 
 
 def index(request):
 
   data = {}
-  data["form"] = AuthenticationForm()
-  data["signup_form"] = UserCreationForm()
-  data["next"] = reverse("index")
+
+  if request.user.is_authenticated():
+    return HttpResponseRedirect(reverse('core:home'))
+
+  auth_form = TopLoginForm()
+  data["form"] = auth_form
+
+  signup_form = FrontSignUpForm()
+  data["signup_form"] = signup_form
+
+  data["next"] = reverse("core:home")
   return render(request, "core/index.html", data)
 
 
@@ -20,16 +28,45 @@ def sign_up(request):
   data = {}
 
   # login and redirect to homepage
-  form = UserCreationForm(request.POST or None)
-  if form.is_valid():
-    form.save()
-    user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password1'])
+  signup_form = FrontSignUpForm(request.POST or None)
+  if signup_form.is_valid():
+    signup_form.save()
+    user = authenticate(username=signup_form.cleaned_data['email'], password=signup_form.cleaned_data['password1'])
     login(request, user)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('core:home'))
 
   # if didn't login, return error
-  data["form"] = AuthenticationForm()
-  data["signup_form"] = form
-  data["next"] = reverse("index")
+  auth_form = TopLoginForm()
+  data["form"] = auth_form
+  data["signup_form"] = signup_form
+  data["next"] = reverse("core:home")
   return render(request, "core/index.html", data)
+
+
+@login_required
+def home(request):
+
+  data = {}
+
+  data["current_page"] = "home"
+
+  return render(request, "core/home.html", data)
+
+
+@login_required
+def profile(request):
+
+  data = {}
+
+  return render(request, "core/profile.html", data)
+
+
+def about(request):
+
+  data = {}
+
+  data["current_page"] = "about"
+
+  return render(request, "core/about.html", data)
+
 
