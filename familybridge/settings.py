@@ -120,6 +120,14 @@ else:
   # assets for staging server
   AWS_STORAGE_BUCKET_NAME = 'cdn.staging.familybridge.redstar.com'
 
+if DEPLOY:
+  # for handling https static file serving
+  from boto.s3.connection import OrdinaryCallingFormat
+  AWS_S3_CALLING_FORMAT = OrdinaryCallingFormat()
+else:
+  # for static files to serve from http
+  AWS_S3_SECURE_URLS = False
+
 MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
 MEDIA_URL = '//s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
 STATIC_ROOT = "/%s/" % STATIC_S3_PATH
