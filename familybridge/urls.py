@@ -20,5 +20,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^mobile/', include('mobile.urls', namespace='mobile')),
+    url(r'^support/', include('support.urls', namespace='support')),
     url(r'^', include('core.urls', namespace='core')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

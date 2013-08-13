@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% load staticfiles %}
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{title}}</title>
+</head>
+<body>
+
+<div style="width:100%;" align="center">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="top" style="background-color:#ff0066;" bgcolor="#ff0066;">
+        <table width="600" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="20" align="left" valign="top" bgcolor="#000000" style="background-color:#000000;">&nbsp;</td>
+            <td align="center" valign="top" bgcolor="#000000" style="background-color:#000000; color:#7b7b7b; font-family:Arial, Helvetica, sans-serif; font-size:14px;"><br>
+              <br>
+            <br>
+            <div style="color:#ff0066; font-family:Georgia, Times New Roman, Times, serif; font-size:24px;">
+            	Family Bridge<br>
+                invites you to try out 
+            </div><br>
+                <br>
+                <img src="{% static "emails/pink/flame.gif" %}" width="117" height="163" style="display:block;"><br>
+                <br>
+<br>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="center" valign="middle"><img src="{% static "emails/pink/divider.gif" %}" alt="" width="544" height="5"></td>
+                  </tr>
+                  <tr>
+                    <td height="65" align="center" valign="middle"><div style="color:#FFFFFF; font-size:28px; font-family:Arial, Helvetica, sans-serif;">ANNUAL COMPANY EVENT</div></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="middle"><img src="{% static "emails/pink/divider.gif" %}" alt="" width="544" height="5"></td>
+                  </tr>
+                </table>
+                <br>
+                <br>
+<div style="color:#7b7b7b; font-family:Arial, Helvetica, sans-serif; font-size:16px;"><b>Event Location &amp; Address</b><br>
+{{main_content}}</div>
+<br>
+<br>
+<br>
+<div style="color:#7b7b7b; font-family:Arial, Helvetica, sans-serif; font-size:14px;"><b>Company Address</b> <br>
+  Contact Person <br>
+  Phone: (123) 456-789 <br>
+  Email: company@companyname.com <br>
+  Website: www.companywebsite.com</div>
+<br>
+<br>
+<br>
+<br>
+<br></td>
+            <td width="20" align="left" valign="top" bgcolor="#000000" style="background-color:#000000;">&nbsp;</td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+</body>
+</html>

@@ -29,3 +29,4 @@ sorl-thumbnail==11.12
 wsgiref==0.1.2
 ipython
 newrelic==1.13.1.31
+premailer==1.2.2
