@@ -31,12 +31,13 @@ body {
   margin-top: 5px;  
 }
 
+#nav-bar-login-form a,
 #nav-bar-login-form a:hover,
 #nav-bar-login-form a:focus {
   color: #ffffff;
 }
 
-#nav-bar-login-form a {
+#nav-bar-login-form {
   color: #ffffff;
 }
 
