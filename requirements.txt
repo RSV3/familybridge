@@ -28,3 +28,4 @@ six==1.3.0
 sorl-thumbnail==11.12
 wsgiref==0.1.2
 ipython
+newrelic==1.13.1.31
