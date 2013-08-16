@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group
 
 class EmailUserManager(BaseUserManager):
 
@@ -38,6 +37,15 @@ class EmailUser(AbstractBaseUser, PermissionsMixin):
   is_staff = models.BooleanField(default=False)
 
   date_joined = models.DateTimeField(auto_now_add=True)
+
+  USER_ROLE_CHOICES = (
+    (0, 'Owner'),
+    (1, 'Member'),
+  )
+
+  role = models.IntegerField(choices=USER_ROLE_CHOICES, default=0)
+  member_groups = models.ManyToManyField(Group, related_name="group_members")
+  email_verified = models.BooleanField(default=False) 
 
   objects = EmailUserManager()
   USERNAME_FIELD = 'email'

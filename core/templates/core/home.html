@@ -11,4 +11,12 @@ Family Bridge Home
   {% if user.is_authenticated %}
     {{ user.email }} is logged in
   {% endif %}
+
+  <p>
+  {% if group_owner %}
+    Currently managing care group for: {{ active_group }}
+  {% else %}
+    Currently accessing care group for: {{ active_group }}
+  {% endif %}
+  </p>
 {% endblock %}

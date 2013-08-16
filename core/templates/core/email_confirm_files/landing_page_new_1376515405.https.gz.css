@@ -1,0 +1,230 @@
+.erics_color{color:#964c59}
+.erics_color_bg{background-color:#964c59}
+.burnt_violet{color:#4d394b}
+.burnt_violet_bg{background-color:#4d394b}
+.ocean_teal{color:#4c9689}
+.ocean_teal_bg{background-color:#4c9689}
+.havana_blue{color:#2a80b9}
+.havana_blue_bg{background-color:#2a80b9}
+.candy_red{color:#eb4d5c}
+.candy_red_bg{background-color:#eb4d5c}
+.indifferent_grey{color:#555459}
+.indifferent_grey_bg{background-color:#555459}
+.subtle_silver{color:#9e9ea6}
+.subtle_silver_bg{background-color:#9e9ea6}
+.cloud_silver{color:#babbbf}
+.cloud_silver_bg{background-color:#babbbf}
+.sky_blue{color:#439fe0}
+.sky_blue_bg{background-color:#439fe0}
+.slate_blue{color:#3d4b5b}
+.slate_blue_bg{background-color:#3d4b5b}
+.muddy_lilac{color:#937e91}
+.muddy_lilac_bg{background-color:#937e91}
+.moscow_red{color:#d00000}
+.moscow_red_bg{background-color:#d00000}
+.mustard_yellow{color:#daa038}
+.mustard_yellow_bg{background-color:#daa038}
+.kelly_green{color:#36a64f}
+.kelly_green_bg{background-color:#36a64f}
+.star_yellow{color:#fc0}
+html,body,div{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;-webkit-font-smoothing:antialiased}
+*{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+body{width:100%;background-image:url(https://slack-assets2.s3-us-west-2.amazonaws.com/8831/img/landing_paper_bg.jpg),url(https://slack-assets2.s3-us-west-2.amazonaws.com/8831/img/landing_paper_bg_tile.jpg);background-position:right top,center center;background-repeat:no-repeat,repeat;background-size:100%,100%}
+body.landing{background-image:none;background:white}
+.container{width:960px;padding:1.5rem;margin:0 auto;position:relative}
+body{font-size:16px;font-family:'Lato',sans-serif;font-weight:500;color:#555459}
+p{line-height:1.25rem}
+h1,h2,h3{font-family:'Lato',sans-serif;font-weight:700}
+h1{font-size:4rem;line-height:4.5rem;margin:0}
+h2{font-size:2.5rem;line-height:3rem}
+a,a:link,a:visited{color:#2a80b9;text-decoration:none;-webkit-transition:color .1s ease-out;-moz-transition:color .1s ease-out;-o-transition:color .1s ease-out;transition:color .1s ease-out}
+a:hover,a:active{color:#439fe0;text-decoration:underline}
+p.small{font-size:1.25rem!important;font-weight:300!important}
+.section{width:100%}
+.section.contact form{max-width:408px}
+.header{position:absolute;top:0;left:0;width:100%}
+#logo{background-image:url(https://slack-assets2.s3-us-west-2.amazonaws.com/8752/img/landing_slack_logo_white.png);background-repeat:no-repeat;width:100px;height:37px;margin:0;position:absolute;top:1.5rem;left:1rem}
+#signin{color:white;font-size:.8rem;line-height:1.25rem;font-weight:normal;margin:0;position:absolute;top:1rem;right:0}
+#signin_link{font-size:1rem;font-weight:700;color:white;text-decoration:none;padding:.5rem 1.25rem;line-height:3rem;border:1px solid white;-webkit-border-radius:.25rem;-moz-border-radius:.25rem;border-radius:.25rem;-webkit-transition:background .1s ease-out;-moz-transition:background .1s ease-out;-o-transition:background .1s ease-out;transition:background .1s ease-out}
+#signin_link:hover{background:white;color:#555459;text-shadow:none;text-decoration:none}
+.section.footer{font-size:1rem;border-top:1px solid #f1efee}
+.section.footer .container{padding:5rem 3rem 4rem}
+.section.footer a{font-weight:700;color:#0f7965;margin:0 .5rem}
+.section.footer a:hover{color:#4c9689}
+.section.footer h2{font-weight:500;color:#8f868e;text-align:center;max-width:800px;margin:1.5rem auto 2rem}
+.section.footer p{margin:3rem auto 0;line-height:2rem}
+.footer_logo_wrapper{text-align:center}
+#footer_logo{margin:0 0 1rem -5rem}
+.section.footer .section.landing.form{margin:0 auto;width:805px;display:block;background:#3d4b5b}
+.section.splash{background-image:url(https://slack-assets2.s3-us-west-2.amazonaws.com/8873/img/landing_stock_2400x1600.jpg);background-repeat:no-repeat;background-position:center;background-size:cover;text-align:center;min-height:672px;text-shadow:0 1px 2px rgba(0,0,0,0.5);padding-bottom:2rem}
+.section.splash h1{font-size:7rem;color:white;padding:9rem 0 2rem}
+.section.splash p{font-size:1.5rem;line-height:2.25rem;color:white;font-weight:500}
+.section .col{float:left;width:42%}
+.section .col.left{margin:1rem 3rem 1rem 1.5rem}
+.section .col.right{margin:1rem 1.5rem 1rem 3rem}
+.section.info{background:#fbfaf8;text-shadow:0 1px 1px white;padding:2rem 0 .5rem;border-bottom:1px solid #f1efee}
+.section.info h3{color:#443642;font-weight:700;font-size:1.7rem;text-align:center;margin:1rem 0}
+.section.info .col{width:29%;margin:0 1.2rem}
+.section.info p{font-size:.95rem}
+.section.info .icon{margin:0 auto;display:block;background-repeat:no-repeat;height:154px;width:154px}
+.section.info .icon.messages{background-image:url(https://slack-assets2.s3-us-west-2.amazonaws.com/8750/img/landing-icon-message.png)}
+.section.info .icon.files{background-image:url(https://slack-assets2.s3-us-west-2.amazonaws.com/8750/img/landing-icon-files.png)}
+.section.info .icon.search{background-image:url(https://slack-assets2.s3-us-west-2.amazonaws.com/8750/img/landing-icon-search.png)}
+.section.features .container{padding-bottom:3rem}
+.section.features h2{margin:1rem 0}
+.section.features .feature,.section.features .story{margin:3rem 0 5rem;position:relative}
+.section.features .feature{margin-bottom:7rem}
+.section.features .feature p{font-size:1.6rem;line-height:2.1rem;font-weight:700;padding-top:.25rem;color:#263235}
+.section.features .feature img{float:left;margin:0 1rem 0 0;z-index:-1}
+.section.features .story img.quote_mark{background-image:url(https://slack-assets2.s3-us-west-2.amazonaws.com/8752/img/landing_quote.png);background-repeat:no-repeat;position:absolute;left:-40px;top:-50px;z-index:-1}
+.section.features .story .quote{font-style:italic;font-size:1.2rem;line-height:1.7rem;z-index:0}
+.section.features .story img.logo{float:left;margin-right:1.5rem}
+.section.features .story img.photo{width:48px;height:48px;float:left;margin:.25rem .5rem 0 0}
+.section.features .story .source{color:#9e9ea6;float:left;margin-top:.5rem}
+.section.features .story .name{color:#555459}
+.section.features .story .blurb{color:#9e9ea6;font-size:.9rem;font-weight:500;clear:both}
+.section.features .story .blurb a{color:#9e9ea6}
+.section.features .story .blurb a:hover{color:#9e9ea6;text-decoration:underline}
+#rdio .logo{width:128px}
+#wantful .logo{width:200px;margin-top:.5rem}
+#tgc .logo{width:190px}
+#cozy .logo{width:180px;margin-top:-0.6rem}
+#kngfu .logo{width:122px}
+.section.features.last{padding:1rem 0 8rem;background:#fbfaf8;text-shadow:0 1px 1px white;border-top:1px solid #f1efee}
+.section.features.last .blurb{float:left;display:inline-block;width:45%;margin:0 0 0 2rem;clear:none}
+.section.landing.form{padding:1rem 1.3rem;margin:0 auto;display:inline-block;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,0.5);width:auto;-webkit-border-radius:.5rem;-moz-border-radius:.5rem;border-radius:.5rem;background:rgba(0,0,0,0.5)}
+.section.landing.form form{margin-bottom:0}
+.section.landing.form p{color:#ba9;font-weight:500;margin:.25rem .25rem .4rem .25rem;font-size:1.25rem;line-height:1.5rem}
+.section.landing.form input[type="text"],.section.landing.form input[type="email"],.section.landing.form input[type="submit"]{padding:.75rem 1.25rem}
+.footer .section.landing.form p{color:#DDD}
+.section.form p.question{margin-bottom:.5rem;font-size:1.1rem;font-weight:700}
+.section.form p.options{font-size:1.1rem;line-height:1.75rem;margin:0 0 2rem}
+.section.form p.group{margin-left:1rem}
+input[type="text"],input[type="email"],input[type="submit"],textarea{padding:.75rem;background:white;border:0;-webkit-border-radius:.25rem;-moz-border-radius:.25rem;border-radius:.25rem;margin:.5rem .25rem;color:#555459;font-weight:700;font-size:1.1rem;font-family:'Lato',sans-serif;-webkit-appearance:none;vertical-align:bottom;height:48px}
+input[type="text"],input[type="email"]{width:400px}
+form.survey input[type="text"],.contact form input[type="text"],form.survey input[type="email"],.contact form input[type="email"],form.survey textarea,.contact form textarea{background:#fbfaf8;border:1px solid #DDD}
+input[type="submit"]{background:#439fe0;color:white;font-weight:700;padding:.75rem 2rem!important;text-shadow:0 1px 1px black;text-shadow:0 1px 1px rgba(0,0,0,0.5);border-bottom:2px solid #194ba3;cursor:pointer;-webkit-transition:background .1s ease-out;-moz-transition:background .1s ease-out;-o-transition:background .1s ease-out;transition:background .1s ease-out}
+input[type="submit"]:hover{background:#3da7f2}
+input[type="submit"]:active{margin-top:9px;height:47px;border-bottom:1px solid #194ba3}
+::-webkit-input-placeholder{color:#9e9ea6}
+:-moz-placeholder{color:#9e9ea6}
+::-moz-placeholder{color:#9e9ea6}
+:-ms-input-placeholder{color:#9e9ea6}
+input[type="radio"],input[type="checkbox"]{vertical-align:middle;display:inline-block;margin-top:-2px}
+input#email{width:300px}
+input#company{width:300px}
+textarea{width:400px;max-width:100%;height:150px;font-weight:400;font-size:1rem;padding:1rem}
+form.survey input[type="text"]{padding:.5rem 1rem;font-weight:400;font-size:1rem;margin:.5rem 0}
+form.survey input.other{margin:.25rem 0 0 1.25rem;display:block;width:300px;max-width:90%}
+.hidden{display:none!important}
+.section.confirmation h1{max-width:75%}
+.section.confirmation .container{padding:4rem 1.5rem 0}
+.section.confirmation p{font-size:1.5rem;line-height:2rem;max-width:70%}
+.section.letter p{max-width:600px;font-size:1.1rem;line-height:1.6rem}
+.show_on_mobile{display:none}
+@media only screen and (min-width:768px) and (max-width:1024px){.container{width:100%}
+#signin{right:1rem}
+#logo{background-image:url(https://slack.com/img/landing_slack_logo_white_@2x.png);background-repeat:no-repeat;width:116px;height:43px;background-size:100%}
+.section.info .col{width:27%;margin:0 1.8rem}
+.section.info .col.left{margin-left:2.75rem}
+.section.features .container{padding:1.5rem .5rem 1.5rem 2rem}
+.section.features .col.left{margin-right:2rem}
+.section.features .col.right{margin-left:2rem}
+.section.features .col{width:43.5%}
+.section.features.last .blurb{width:57%}
+.section.features.last{padding:1rem 6rem 8rem 5rem}
+}
+@media only screen and (min-width:768px) and (max-width:1023px){.container{width:100%}
+#logo{background-image:url(https://slack.com/img/landing_slack_logo_white_@2x.png);background-repeat:no-repeat;width:116px;height:43px;background-size:100%}
+.section.confirmation p{max-width:80%}
+.section.splash .container{padding:1.5rem 2rem}
+input#email,input#company{width:244px;padding:.75rem 0 .75rem 1rem}
+.section.info .col{width:29%;margin:0 1.95rem}
+.section.info .col h3{font-size:1.4rem}
+.section.info .col.left{margin-left:1rem}
+.section.info .col.right{margin-right:.5rem}
+.section.info .col.middle{margin:0}
+.section.features .container{padding:1rem .5rem 1.5rem 2rem}
+.section.features .col.left,.section.features .col.right{margin:1rem;width:45%}
+.section.features .col.left{margin-right:.5rem}
+.section.features .col.right{margin-right:0;margin-left:2.5rem}
+.section.features .feature img{width:48px;height:47px;margin:.4rem 1rem 0 0}
+.section.features .feature p{font-size:1.4rem;line-height:1.7rem}
+.section.features .story .quote{font-size:1.1rem;line-height:1.6rem}
+.section.features .story img.logo{margin-right:1rem}
+#rdio .logo{width:84px;margin-top:.6rem}
+#wantful .logo{width:160px;margin-top:.75rem}
+#tgc .logo{width:173px;margin-top:.1rem}
+#cozy .logo{width:150px;margin-top:-0.3rem}
+.section.features.last .blurb{clear:left;width:100%;margin:.5rem 0}
+.section.footer .section.landing.form{width:694px}
+.section.footer .container{padding:4rem 2rem 3rem}
+.section.footer h2{font-size:2rem;line-height:2.5rem;margin:1.5rem auto;max-width:630px}
+}
+@media only screen and (max-width:767px){.container{width:100%}
+#logo{background-image:url(https://slack.com/img/landing_slack_logo_white_@2x.png);background-repeat:no-repeat;width:116px;height:43px;background-size:100%}
+#signin{right:1rem}
+.section.splash h1{padding:6rem 0 1rem;font-size:4.8rem;line-height:5rem}
+.section.splash p.tagline br{display:none}
+.section.splash p.tagline{font-size:1.5rem;line-height:2rem;color:white;font-weight:500;margin:1rem .25rem 2rem}
+.section.landing.form p{text-align:center}
+.section.info .col{width:65%;max-width:374px;margin:0 auto 4rem;float:none}
+.section.info h3{font-size:1.9rem}
+.section.info .col p{margin-left:1rem}
+.section.features .col{width:100%;margin:0;padding:1rem 1rem 1rem 2rem}
+.section.features .feature{width:384px;margin:3rem auto 7rem}
+.section.footer .section.landing.form{width:100%}
+.section.footer .container{padding:4rem 1.5rem 3rem}
+.section.footer h2{font-size:1.6rem;line-height:2.2rem;max-width:540px;margin:1rem auto 1.5rem}
+.section.footer p.footer_links{font-size:1rem;line-height:1.75rem}
+#footer_logo{margin:0 0 1rem -3rem;max-width:80%}
+.section.features.last .story{margin:1rem 2rem 5rem}
+.section.features.last .blurb{width:100%;margin:1rem 0;clear:left}
+.section.confirmation h1{font-size:3rem;line-height:3.5rem}
+.section.confirmation h1,.section.confirmation p{max-width:100%}
+.section.confirmation p{font-size:1.25rem;line-height:1.5rem}
+.section.confirmation .container{padding:3rem 1rem 0}
+.section.form .container{padding:1.5rem 1rem}
+h2{font-size:1.5rem;line-height:2rem}
+input[type="text"],input[type="email"],input[type="submit"],textarea{width:100%!important;padding:.75rem 1.25rem;margin:.5rem 0}
+.section.form p{font-size:1.25rem;line-height:1.75rem}
+.section.form p.options{margin-left:0}
+select{width:70%}
+}
+@media only screen and (max-width:479px){.show_on_mobile{display:block}
+.hide_on_mobile{display:none}
+.container{width:100%}
+#logo{background-image:url(https://slack.com/img/landing_slack_logo_white_@2x.png);background-repeat:no-repeat;width:116px;height:43px;background-size:100%}
+#signin{top:.75rem}
+.section.splash .container{padding:1.5rem .5rem}
+.section.splash h1{padding:8rem .5rem 2.5rem;font-size:3.2rem;line-height:2.5rem;text-align:left}
+.section.splash p.tagline{font-size:1.5rem;line-height:2rem;margin:0 0 2rem .5rem;text-align:left}
+.section.landing.form{padding:.25rem .75rem}
+.section.landing.form p{font-size:1rem;padding:0 .5rem}
+.section.info{padding:1rem 0 0}
+.section.info .col{width:100%;margin:1rem auto 2.5rem}
+.section.info .col p{margin-left:.5rem}
+.section.features .container{padding:1.5rem 1rem 2rem}
+.section.features .feature{width:100%;margin:0 auto 6rem}
+.section.features .col{width:100%;margin:0;padding:0 0 1rem .5rem}
+.section.features .feature img{width:48px;height:47px;margin:.4rem 1rem 0 0}
+.section.features .feature p{font-size:1.1rem;line-height:1.6rem}
+.section.features .story{margin:3rem 0}
+.section.features .story img.quote_mark{left:-24px}
+.section.features .story img.logo{display:none}
+.section.features .story .blurb a{color:#2a80b9}
+.section.footer .container{padding:3rem .75rem 2rem}
+.section.footer h2{font-size:1.3rem;line-height:1.8rem}
+#footer_logo{margin:0 0 1rem -3rem;max-width:80%}
+.section.footer p{margin-top:2rem}
+.section.features.last .story{margin:0rem 1rem 4rem}
+.section.features.last .blurb{margin-top:0}
+.section.confirmation h1{font-size:2rem;line-height:2.5rem}
+.section.confirmation .container{padding-top:6rem}
+.section.form .container{padding:1.5rem 1rem}
+h2{font-size:1.5rem;line-height:2rem}
+input[type="text"],input[type="email"],input[type="submit"],textarea{width:100%!important;padding:.75rem 1.25rem;margin:.5rem 0}
+.section.form p{font-size:1.25rem;line-height:1.75rem}
+.section.form p.options{margin-left:0}
+select{width:70%}
+}

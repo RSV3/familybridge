@@ -1,0 +1,83 @@
+*{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+*:focus{outline:0}
+.float-left{float:left}
+.float-right{float:right}
+.clear-left{clear:left}
+.clear-right{clear:right}
+.clear-both{clear:both}
+.position-relative{position:relative}
+.position-absolute{position:absolute}
+.block{display:block}
+.inline-block{display:inline-block}
+.align-left{text-align:left!important}
+.align-center{text-align:center!important}
+.align-right{text-align:right!important}
+.align_top{vertical-align:top}
+.align_middle{vertical-align:middle}
+.align_bottom{vertical-align:bottom}
+.offscreen{position:absolute;left:-10000px;top:-10000px}
+.normal{font-weight:normal!important}
+.bold{font-weight:bold}
+.medium{font-weight:500}
+.italic{font-style:italic}
+.underline{text-decoration:underline}
+.no_underline,.no_underline:hover{text-decoration:none}
+.full_width{width:100%!important}
+.no_min_width{min-width:0!important}
+.full-height{overflow-y:auto}
+.cursor_pointer{cursor:pointer}
+.tiny{font-size:.7rem}
+.mini{font-size:.8rem;line-height:1.2rem;color:#666}
+a.mini{color:#08c}
+.no_margin{margin:0!important}
+.no_left_margin{margin-left:0!important}
+.no_right_margin{margin-right:0!important}
+.no_top_margin{margin-top:0!important}
+.no_bottom_margin{margin-bottom:0!important}
+.small_top_margin{margin-top:.5rem!important}
+.small_bottom_margin{margin-bottom:.5rem!important}
+.small_left_margin{margin-left:.5rem!important}
+.small_right_margin{margin-right:.5rem!important}
+.tiny_right_margin{margin-right:.1rem!important}
+.top_margin{margin-top:1rem!important}
+.bottom_margin{margin-bottom:1rem!important}
+.left_margin{margin-left:1rem!important}
+.right_margin{margin-right:1rem!important}
+.large_top_margin{margin-top:2rem!important}
+.large_bottom_margin{margin-bottom:2rem!important}
+.large_left_margin{margin-left:2rem!important}
+.large_right_margin{margin-right:2rem!important}
+.margin_auto{margin:auto}
+.no_padding{padding:0!important}
+.no_top_padding{padding-top:0!important}
+.small_padding{padding:.5rem!important}
+.normal_padding{padding:1rem!important}
+.large_padding{padding:2rem!important}
+.lowercase{text-transform:lowercase}
+.uppercase{text-transform:uppercase}
+.capitalize{text-transform:capitalize}
+.break_word{word-wrap:break-word}
+.no_wrap{white-space:nowrap}
+.hidden{display:none!important;visibility:hidden}
+a[name]{display:block;position:relative;top:-4rem;visibility:hidden}
+.overflow-ellipsis{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+a:not([href]){cursor:pointer}
+.icon_new_window{color:#c0c9cc!important;display:inline-block;margin:0 .2rem;font-size:.7rem}
+.icon_new_window:hover{color:#527b89!important}
+.icon_comment{width:16px;height:16px;color:white;text-shadow:0 0 2px black;display:inline-block}
+.icon_width_8{width:8px;display:inline-block}
+.icon_share{font-size:.85rem;color:#bbbcbd!important;-webkit-transition:color .15s ease-out;-moz-transition:color .15s ease-out;-o-transition:color .15s ease-out;transition:color .15s ease-out;vertical-align:bottom;line-height:18px}
+.file_list_item .icon_share,.post_list_item .icon_share,.activity_item .icon_share{line-height:14px}
+.file_list_item:hover .icon_share,.post_list_item:hover .icon_share,.activity_item:hover .icon_share,a.share_link:hover .icon_share{color:#08c!important}
+a.share_link:hover .icon_share,a.share_link:hover .icon_share,a.share_link:hover .icon_share{color:#005580!important}
+a.share_link{text-decoration:none!important}
+a.share_link:hover span{text-decoration:underline}
+a.delete_link{color:#ab6767}
+a.delete_link:hover{color:#005580}
+#file_public_link{width:90%;font-size:.7rem;line-height:1.2rem;height:1.2rem;margin:0}
+ul.action_list{list-style-type:none;margin:0 0 1rem 4px}
+ul.action_list li{line-height:1.25rem}
+.action_list i{width:1.25rem;display:inline-block;text-align:center;padding:0 .5rem 0 0;font-size:12px}
+.action_list a:hover i{text-decoration:none}
+.copy_only{display:-moz-inline-box;-moz-box-orient:vertical;display:inline-block;vertical-align:baseline;*vertical-align:auto;*zoom:0;*display:inline;width:0;height:0;background-size:0;background-repeat:no-repeat;text-indent:-9999px;font-size:0;float:left}
+img.grayscale{filter:url(data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale);filter:gray;-webkit-filter:grayscale(100%)}
