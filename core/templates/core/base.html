@@ -50,35 +50,48 @@
       <div class="container">
          {% block navbar %}
           <div class="navbar navbar-fixed-top">
-            <a class="navbar-brand" href="{% url "core:index" %}"><img width="180" src="{% static "img/fb_logo.png" %}"></a>
+            <a class="navbar-brand" href="{% url "core:index" %}"><img width="180" src="{% static "img/FBLogo.png" %}"></a>
             <ul class="nav navbar-nav">
+              {% if user.is_authenticated %}
               <li{% if current_page == "home" %} class="active"{% endif %}>
-                <a href="{% url "core:index" %}">Home</a>
+                <a href="{% url "core:index" %}">Dashboard</a>
               </li>
-              <li{% if current_page == "about" %} class="active"{% endif %}>
-                <a href="{% url "core:about" %}">About</a>
-              </li>                       
+              <li{% if current_page == "expense" %} class="active"{% endif %}>
+                <a href="{% url "expense:index" %}">Expense</a>
+              </li>             
+              <li{% if current_page == "contribute" %} class="active"{% endif %}>
+                <a href="{% url "contribute:index" %}">Contribute</a>
+              </li>                          
+              <li{% if current_page == "settings" %} class="active"{% endif %}>
+                <a href="{% url "settings:index" %}">Settings</a>
+              </li>                                       
+              {% endif %}
             </ul>
 
             <!-- Login form -->
             <div id="nav-bar-login-form">
               {% if user.is_authenticated %}
-                <div class="col-lg-2 navbar-form pull-right">
-                  <a href="{% url 'core:profile' %}">{{ user.email }}</a> |
-                  <a href="{% url 'logout' %}">Logout</a>
+                <div class="col-lg-3 navbar-form pull-right">
+                  <a href="{% url 'core:profile' %}">{{ user.email }}</a>
+                  <a href="{% url 'logout' %}" class="btn btn-default">Logout</a>
                 </div>
               {% else %}
-                <form class="{% if form.errors %}has-error {% endif %}navbar-form pull-right" method="POST" action="{% url 'django.contrib.auth.views.login' %}">
-                  {% if form.errors %}
-                  <span class="alert alert-danger">Login invalid. Please try again.</span>
-                  {% endif %}                            
-                  {% csrf_token %}
-                  {{ form.username }}
-                  {{ form.password }}
+                {% if form.username %}
+                <div class="navbar-form pull-right">
+                  <form class="{% if form.errors %}has-error {% endif %}navbar-form pull-right" method="POST" action="{% url 'django.contrib.auth.views.login' %}">
+                    {% if form.errors %}
+                    <span class="alert alert-danger">Login invalid. Please try again.</span>
+                    {% endif %}                            
+                    {% csrf_token %}
+                    {{ form.username }}
+                    {{ form.password }}
 
-                  <input type="submit" class="btn btn-default" value="Login" />
-                  <input type="hidden" name="next" value="{{ next }}" />
-                </form>                        
+                    <input type="submit" class="btn btn-default btn-lg" value="Login" />
+                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                    <input type="hidden" name="next" value="{{ next }}" />
+                  </form>                        
+                </div>
+                {% endif %}
               {% endif %}
             </div>
           </div>
@@ -93,13 +106,13 @@
 
     </div> <!-- #content -->
 
+    {% block footer %}
     <footer>
-      {% block footer %}
       <div class="footer-text text-center">
         &copy; 2013 Family Bridge, a Redstar Ventures Pilot
       </div>           
-      {% endblock footer %}
     </footer>     
+    {% endblock footer %}
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{% static "html5/js/vendor/jquery-1.9.1.min.js" %}"><\/script>')</script>

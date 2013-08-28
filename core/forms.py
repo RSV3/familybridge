@@ -12,7 +12,7 @@ class UserCreationForm(forms.ModelForm):
 
   class Meta:
     model = EmailUser
-    fields = ('email',)
+    fields = ('email', 'first_name', 'last_name')
 
   def clean_password2(self):
     # Check that the two password entries match
@@ -62,10 +62,10 @@ class TopLoginForm(AuthenticationForm):
     super(TopLoginForm, self).__init__(*args, **kwargs)
     login_field_width = 200
 
-    self.fields['username'].widget.attrs['class'] = 'form-control'
+    self.fields['username'].widget.attrs['class'] = 'form-control input-lg'
     self.fields['username'].widget.attrs['style'] = 'width:%dpx;' % login_field_width
     self.fields['username'].widget.attrs['placeholder'] = 'E-mail'
-    self.fields['password'].widget.attrs['class'] = 'form-control'
+    self.fields['password'].widget.attrs['class'] = 'form-control input-lg'
     self.fields['password'].widget.attrs['style'] = 'width:%dpx;' % login_field_width
     self.fields['password'].widget.attrs['placeholder'] = 'Password'
 
@@ -75,14 +75,21 @@ class FrontSignUpForm(UserCreationForm):
   def __init__(self, *args, **kwargs):
     super(FrontSignUpForm, self).__init__(*args, **kwargs)
 
-    signup_field_width = 312
+    signup_field_width = 370
 
+
+    self.fields['first_name'].widget.attrs['class'] = 'form-control input-lg'
+    #self.fields['first_name'].widget.attrs['style'] = 'width:%dpx;' % (signup_field_width/2)
+    self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'
+    self.fields['last_name'].widget.attrs['class'] = 'form-control input-lg'
+    #self.fields['last_name'].widget.attrs['style'] = 'width:%dpx;' % (signup_field_width/2)
+    self.fields['last_name'].widget.attrs['placeholder'] = 'Last Name'
     self.fields['email'].widget.attrs['class'] = 'form-control input-lg'
-    self.fields['email'].widget.attrs['style'] = 'width:%d;' % signup_field_width
+    #self.fields['email'].widget.attrs['style'] = 'width:%dpx;' % signup_field_width
     self.fields['email'].widget.attrs['placeholder'] = 'E-mail'
     self.fields['password1'].widget.attrs['class'] = 'form-control input-lg'
-    self.fields['password1'].widget.attrs['style'] = 'width:%dpx;' % signup_field_width
+    #self.fields['password1'].widget.attrs['style'] = 'width:%dpx;' % signup_field_width
     self.fields['password1'].widget.attrs['placeholder'] = 'Password'
     self.fields['password2'].widget.attrs['class'] = 'form-control input-lg'
-    self.fields['password2'].widget.attrs['style'] = 'width:%dpx;' % signup_field_width
+    #self.fields['password2'].widget.attrs['style'] = 'width:%dpx;' % signup_field_width
     self.fields['password2'].widget.attrs['placeholder'] = 'Re-type Password'

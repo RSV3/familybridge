@@ -59,6 +59,9 @@ INSTALLED_APPS = (
   'django_tables2',
   'core',
   'mobile',
+  'expense',
+  'contribute',
+  'settings',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,6 +77,7 @@ ROOT_URLCONF = 'familybridge.urls'
 
 WSGI_APPLICATION = 'familybridge.wsgi.application'
 
+DEFAULT_FROM_EMAIL = 'familybridge@redstar.com'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases

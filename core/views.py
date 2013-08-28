@@ -40,7 +40,7 @@ def sign_up(request):
     # create a default group
     import uuid
     random_str = str(uuid.uuid4())
-    default_group = Group(name="cg_{0}_{1}_{3}".format(user.first_name, user.last_name, random_str ))
+    default_group = Group(name="cg_{0}_{1}_{2}".format(user.first_name, user.last_name, random_str ))
     default_group.save()
     user.groups.add(default_group)
     return HttpResponseRedirect(reverse('core:home'))

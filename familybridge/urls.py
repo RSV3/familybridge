@@ -9,6 +9,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    #url(r'^account/password_reset/', 'django.contrib.auth.views.password_reset', {'html_email_template_name': 'registration/password_reset_html_email.html'}),
+    url(r'^account/', include('django.contrib.auth.urls')),
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'core/index.html',
                                                         'authentication_form': TopLoginForm,
                                                         'extra_context': {'signup_form': FrontSignUpForm()}
@@ -20,6 +22,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^mobile/', include('mobile.urls', namespace='mobile')),
+    url(r'^expense/', include('expense.urls', namespace='expense')),
+    url(r'^contribute/', include('contribute.urls', namespace='contribute')),
+    url(r'^settings/', include('settings.urls', namespace='settings')),
     url(r'^support/', include('support.urls', namespace='support')),
     url(r'^', include('core.urls', namespace='core')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

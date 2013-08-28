@@ -14,17 +14,24 @@ body {
 
 /* customize bootstrap navbar */
 .navbar {
-  background-color: #089992;
+  background-color: rgb(224, 236, 212);
 }
 .navbar-brand {
-  padding: 5px;
+  padding: 0px;
+}
+
+.nav {
+  padding-left: 50px;
+}
+
+.navbar-form {
+  text-align: right;
 }
 
 .navbar-nav > li > a {
-    margin-top: 11px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #ffffff;
+  margin-top: 42px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #nav-bar-login-form {
@@ -34,13 +41,12 @@ body {
 #nav-bar-login-form a,
 #nav-bar-login-form a:hover,
 #nav-bar-login-form a:focus {
-  color: #ffffff;
+  color: #000000;
 }
 
 #nav-bar-login-form {
-  color: #ffffff;
+  margin-top: 10px;
 }
-
 
 #center-sign-up-form {
   width: 500px; margin: 200px auto 0 auto;
@@ -50,11 +56,31 @@ body {
   text-align: center;
 }
 
+/* separate the menus */
+.navbar-nav > li {
+  margin-right: 20px;
+}
+
 .navbar-nav > .active > a,
 .navbar-nav > .active > a:hover,
 .navbar-nav > .active a:focus {
-  background-color: #9AC644;
+  background-color: #FFFFFF;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #BBBBBB;
+  border-bottom-style: none;
 }
+
+.navbar-nav > li > a {
+  color: rgb(80, 154, 198);
+}
+
+.navbar-nav > li > a:hover {
+  color: rgb(80, 154, 255);
+}
+
 
 /* Set the position and dimensions of the background image. */
 #bg {
@@ -84,7 +110,7 @@ body {
 /* Specify the position and layering for the content that needs to appear in front of the background image. Must have a higher z-index value than the background image. Also add some padding to compensate for removing the margin from the 'html' and 'body' tags. */
 
 #content {
-  position:relative; z-index:1; padding-top:70px;
+  position:relative; z-index:1; padding-top:100px;
   min-height: 100%;
 }
 
@@ -94,10 +120,67 @@ footer {
   bottom: 0;
   width: 100%;
   height: 50px;
-  background-color: #089992;
-  color: #ffffff;
+  background-color: rgb(224, 236, 212);
+  color: #000000;
 }
 
 .footer-text {
   margin-top: 5px;
+}
+
+/* for blurb and sign up form */
+.holder {
+  position:relative;
+  z-index: 10;
+  margin-top: 25px;
+}
+
+.overlay {
+  background-color: rgba(153, 204, 50, 0.25);
+  z-index: 11;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.overlay h1, .overlay p {
+  color: #000000;
+  opacity: 1.0;
+  z-index: 11;
+}
+
+.overlay .sub-heading {
+  font-size: 1.2em;
+}
+
+.signup-holder {
+  position: relative;
+  margin-top: 25px;
+  z-index: 10;
+}
+
+.signup-overlay {
+  position: absolute;
+  background-color: rgb(153, 204, 50);
+  z-index: 11;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px; 
+  padding: 20px;
+}
+
+.signup-overlay h2 {
+  color: #000000;
+  opacity: 1.0;
+  z-index: 11; 
+}
+
+.signup-button {
+  text-align: right; 
+}
+
+/* password_reset_form.html */
+#email-entry-form {
+  margin-top: 50px;
 }

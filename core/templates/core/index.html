@@ -10,36 +10,53 @@
   <!-- body content -->
   <div class="row">
 
-      <div id="center-sign-up-form">
-        <h1>Join, Share and Care</h1>
-        <form class="{% if signup_form.errors %}has-error {% endif %}" method="POST" action="{% url 'core.views.sign_up' %}">
-          {% csrf_token %}
-          {% if signup_form.errors %}
-            <div class="alert alert-danger">
-            {{ signup_form.errors }}
+      <div class="col-xs-12 col-sm-6 col-lg-12">
+        <div class="col-lg-6">
+          <div class="holder">
+            <div class="overlay">
+              <h1>Track, manage, and share the cost of care</h1>
+              <p class="sub-heading">Make coordinating care easier by sharing and managing expenses with family.</p>
             </div>
-          {% endif %}
-          <table>
-          <tr>
-              <td>{{ signup_form.email.label_tag }}</td>
-              <td>{{ signup_form.email }}</td>
-          </tr>
-          <tr>
-              <td>{{ signup_form.password1.label_tag }}</td>
-              <td>{{ signup_form.password1 }}</td>
-          </tr>
-           <tr>
-              <td>{{ signup_form.password2.label_tag }}</td>
-              <td>{{ signup_form.password2 }}</td>
-          </tr>     
-          </table>
-          <p>&nbsp;</p>
-          <input type="submit" class="col-lg-offset-9 btn btn-default btn-lg" value="Sign Up" />
-          <input type="hidden" name="next" value="{{ next }}" />
-        </form>
+          </div>
+        </div>
       </div>
 
-  </div>
+      <div class="col-xs-12 col-sm-6 col-lg-12">
+        <div class="col-lg-6">
+          <div class="signup-holder">
+            <div class="signup-overlay">
+              <h2>Sign Up!</h2>
+              <form class="{% if signup_form.errors %}has-error {% endif %}" method="POST" action="{% url 'core.views.sign_up' %}">
+                {% csrf_token %}
+                {% if signup_form.errors %}
+                  <div class="alert alert-danger">
+                  {{ signup_form.errors }}
+                  </div>
+                {% endif %}
+                <table>
+                  <tr>
+                      <td>{{ signup_form.first_name }}</td>
+                      <td>{{ signup_form.last_name }}</td>
+                  </tr>
+                  <tr>
+                      <td colspan="2">{{ signup_form.email }}</td>
+                  </tr>           
+                  <tr>
+                      <td colspan="2">{{ signup_form.password1 }}</td>
+                  </tr>            
+                  <tr>
+                      <td colspan="2">{{ signup_form.password2 }}</td>
+                  </tr>     
+                </table>
+                <p>&nbsp;</p>
+                <input type="submit" class="col-lg-offset-9 btn btn-default btn-lg signup-button" value="Sign Up" />
+                <input type="hidden" name="next" value="{{ next }}" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 {% endblock %}
 
