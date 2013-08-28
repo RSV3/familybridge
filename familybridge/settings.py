@@ -61,7 +61,7 @@ INSTALLED_APPS = (
   'mobile',
   'expense',
   'contribute',
-  'settings',
+  'setup',
 )
 
 MIDDLEWARE_CLASSES = (

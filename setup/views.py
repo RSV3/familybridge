@@ -8,6 +8,6 @@ from django.contrib.auth.decorators import login_required
 def index(request):
   data = {}
 
-  data["current_page"] = "settings"
+  data["current_page"] = "setup"
 
-  return render(request, "settings/index.html", data)
+  return render(request, "setup/index.html", data)
