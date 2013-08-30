@@ -7,6 +7,7 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 
 from core.forms import TopLoginForm, FrontSignUpForm
+from expense.forms import AddExpenseForm, ContributeForm
 
 
 def index(request):
@@ -84,6 +85,11 @@ def home(request, group_id=None):
       group_owner = False
   data["group_owner"] = group_owner
   data["active_group"] = active_group
+
+  add_expense_form = AddExpenseForm()
+
+  data["add_expense_form"] = add_expense_form
+  data["total_expense"] = 0
 
   return render(request, "core/home.html", data)
 

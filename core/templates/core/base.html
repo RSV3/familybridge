@@ -60,7 +60,7 @@
                 <a href="{% url "expense:index" %}">Expense</a>
               </li>             
               <li{% if current_page == "contribute" %} class="active"{% endif %}>
-                <a href="{% url "contribute:index" %}">Contribute</a>
+                <a href="{% url "expense:contributions" %}">Contribute</a>
               </li>                          
               <li{% if current_page == "setup" %} class="active"{% endif %}>
                 <a href="{% url "setup:index" %}">Settings</a>

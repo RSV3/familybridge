@@ -184,3 +184,54 @@ footer {
 #email-entry-form {
   margin-top: 50px;
 }
+
+/* dashboard home */
+.add-expense-form {
+  background: rgb(177, 221, 140);
+  padding: 1px 5px 1px 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; 
+  margin-top:10px;
+}
+
+.add-expense-form h4 {
+  text-align: center;
+  color: #ffffff;
+}
+
+.recent-requests {
+}
+
+.recent-requests h4 {
+  text-align: center;
+}
+
+.expense-chart {
+  text-align: center;
+}
+
+.grey-area {
+  background: rgb(245, 245, 245);
+  padding: 1px 5px 1px 5px;
+  border-width: 1px;
+  border-style: solid;  
+  color: rgb(122, 122, 122);
+  min-height: 600px;
+  height: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; 
+}
+
+.center-align {
+}
+
+.total-expense-cost {
+  color: rgb(67, 141, 251);
+}
+
+.total-expense-summary {
+  font-size: 1.2em;
+  font-weight: bold;
+}

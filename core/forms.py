@@ -93,3 +93,4 @@ class FrontSignUpForm(UserCreationForm):
     self.fields['password2'].widget.attrs['class'] = 'form-control input-lg'
     #self.fields['password2'].widget.attrs['style'] = 'width:%dpx;' % signup_field_width
     self.fields['password2'].widget.attrs['placeholder'] = 'Re-type Password'
+

@@ -23,7 +23,6 @@ urlpatterns = patterns('',
 
     url(r'^mobile/', include('mobile.urls', namespace='mobile')),
     url(r'^expense/', include('expense.urls', namespace='expense')),
-    url(r'^contribute/', include('contribute.urls', namespace='contribute')),
     url(r'^settings/', include('setup.urls', namespace='setup')),
     url(r'^support/', include('support.urls', namespace='support')),
     url(r'^', include('core.urls', namespace='core')),

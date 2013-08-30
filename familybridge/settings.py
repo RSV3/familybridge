@@ -73,7 +73,6 @@ INSTALLED_APPS = (
   # Uncomment the next line to enable admin documentation:
   'django.contrib.admindocs',
   #'south',
-  'debug_toolbar',
   'sorl.thumbnail',
   #'storages',
   's3_folder_storage',
@@ -84,7 +83,6 @@ INSTALLED_APPS = (
   'core',
   'mobile',
   'expense',
-  'contribute',
   'setup',
 )
 
@@ -185,6 +183,7 @@ AUTH_USER_MODEL = 'core.EmailUser'
 try:
   from familybridge.settings_local import *
   print "Imported local settings"
+  INSTALLED_APPS += ADDITIONAL_APPS
 except Exception as e:
   print e
 

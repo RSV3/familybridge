@@ -6,8 +6,18 @@
 Family Bridge Home
 {% endblock %}
 
+{% block additional_styles %}
+    <style type="text/css">
+        .slice text {
+            font-size: 16pt;
+            font-family: Arial;
+        }   
+    </style>
+{% endblock %}
+
 {% block content %}
 
+  <!-- 
   {% if user.is_authenticated %}
     {{ user.email }} is logged in
   {% endif %}
@@ -19,6 +29,146 @@ Family Bridge Home
     Currently accessing care group for: {{ active_group }}
   {% endif %}
   </p>
+  -->
+
+  <div class="col-sm-3 col-lg-3">
+    <a href="{% url 'expense:add_contributors' %}" class="btn btn-info btn-lg btn-block">Add Contributors</a>
+    <a href="{% url 'expense:add_bank_card' %}" class="btn btn-success btn-lg btn-block">Add Bank Card</a>
+    <a href="{% url 'expense:add_multiple_expenses' %}" class="btn btn-success btn-lg btn-block">Multiple Expenses</a>
+      <div class="add-expense-form">
+      <!-- add expense form -->
+      <form action="{% url 'expense:add_expense' %}" method="POST" role="form">
+        {% csrf_token %}
+        <h4>Add Expense</h4>
+        <div class="form-group">
+          <input class="form-control" id="id_date" name="date" type="date">
+        </div>
+
+        <div class="form-group">
+        {{ add_expense_form.amount }}
+        </div>
+        <div class="form-group">
+        {{ add_expense_form.title }}
+        </div>
+        <div class="form-group">
+        {{ add_expense_form.description }}
+        </div>
+        <div class="form-group">
+        {{ add_expense_form.category }}
+        </div>
+        <div class="form-group">
+        <button type="button" class="btn btn-default btn-block"><i class="glyphicon glyphicon-plus"></i> Add Contributor</button>
+        </div>
+        <div class="form-group">
+          <center>
+            <input type="submit" class="btn btn-success" name="expense_submit" value="Submit">
+          </center>
+        </div>
+      </form>
+      </div>
+  </div>
+
+  <div class="col-sm-4 col-lg-4">
+    <div class="recent-requests grey-area">
+      <h4>Recent Requests</h4>
+      There are no recent requests.
+    </div>
+  </div>
+
+  <div class="col-sm-5 col-lg-5">
+    <div class="expense-chart grey-area">
+      <h4>Summary</h4>
+      <div class="row">
+        <div class="col-sm-6 col-lg-6">
+          <div class="form-group">
+            <select class="form-control input-lg">
+              <option value="Everybody" selected>Everybody</option>
+              <option value="Pam">Pam</option>
+              <option value="Scott">Scott</option>
+              <option value="Tom">Tom</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-sm-1 col-lg-1">by</div>
+
+        <div class="col-sm-5 col-lg-5">
+          <div class="form-group">
+            <select class="form-control input-lg">
+              <option value="Category" selected>Category</option>
+              <option value="Admin">Admin</option>
+              <option value="Household">Household</option>
+              <option value="Lving">Living</option>
+            </select>
+          </div>
+        </div>
+      </div>  <!-- row -->
+
+      <div id="piechart">
+      </div>
+
+      <div class="row">
+        <div class="total-expense-summary">
+          You have spent a total of
+          <div class="total-expense-cost">
+            ${{ total_expense }} 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block additional_scripts %}
+    <script type="text/javascript" src="{% static "d3/d3.min.js" %}"></script>
+
+    <script type="text/javascript">
+ 
+    var w = 300,                        //width
+    h = 300,                            //height
+    r = 150,                            //radius
+    color = d3.scale.category20c();     //builtin range of colors
+ 
+    data = [{"label":"one", "value":20}, 
+            {"label":"two", "value":50}, 
+            {"label":"three", "value":30}];
+    
+    var vis = d3.select("#piechart")
+        .append("svg:svg")              //create the SVG element inside the <body>
+        .data([data])                   //associate our data with the document
+            .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
+            .attr("height", h)
+        .append("svg:g")                //make a group to hold our pie chart
+            .attr("transform", "translate(" + r + "," + r + ")")    //move the center of the pie chart from 0, 0 to radius, radius
+ 
+    var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
+        .outerRadius(r);
+ 
+    var pie = d3.layout.pie()           //this will create arc data for us given a list of values
+        .value(function(d) { return d.value; });    //we must tell it out to access the value of each element in our data array
+ 
+    var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
+        .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
+        .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
+            .append("svg:g")                //create a group to hold each slice (we will have a <path> and a <text> element associated with each slice)
+                .attr("class", "slice");    //allow us to style things in the slices (like text)
+ 
+        arcs.append("svg:path")
+                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
+                .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+ 
+        arcs.append("svg:text")                                     //add a label to each slice
+                .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+                //we have to make sure to set these before calling arc.centroid
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+            })
+            .attr("text-anchor", "middle")                          //center the text on it's origin
+            .text(function(d, i) { return data[i].label; });        //get the label from our original data array
+        
+    </script>
 {% endblock %}
 
 {% block footer %}
