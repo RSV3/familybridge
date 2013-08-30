@@ -37,6 +37,30 @@ except Exception as e:
 
 TEMPLATE_DEBUG = DEBUG
 
+# For testing real send
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = 'tech@vinely.com'
+#EMAIL_HOST_PASSWORD = ''
+#EMAIL_USE_TLS = True
+
+if DEPLOY:
+  # SENDGRID
+  EMAIL_HOST = 'smtp.sendgrid.net'
+  EMAIL_PORT = '587'
+  EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME')
+  EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
+  EMAIL_USE_TLS = True
+else:
+  EMAIL_BACKEND = 'core.backends.EmailSinkBackend'
+  EMAIL_HOST = 'smtp.gmail.com'
+  EMAIL_PORT = 587
+  EMAIL_HOST_USER = 'familybridge@redstar.com'
+  EMAIL_HOST_PASSWORD = 'bridge2elderly'
+  EMAIL_USE_TLS = True
+  EMAIL_TEST_ACCOUNT = 'familybridgetesting@gmail.com'
+
 # Application definition
 
 INSTALLED_APPS = (
