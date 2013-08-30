@@ -106,6 +106,8 @@ Family Bridge Home
 
       <div id="piechart">
       </div>
+      <div id="piechart-legend">
+      </div>
 
       <div class="row">
         <div class="total-expense-summary">
@@ -126,7 +128,7 @@ Family Bridge Home
     <script type="text/javascript">
  
     var w = 300,                        //width
-    h = 300,                            //height
+    h = 400,                            //height
     r = 150,                            //radius
     color = d3.scale.category20c();     //builtin range of colors
  
@@ -168,6 +170,73 @@ Family Bridge Home
             .attr("text-anchor", "middle")                          //center the text on it's origin
             .text(function(d, i) { return data[i].label; });        //get the label from our original data array
         
+    var color_hash = {  0 : ["one", "green"],
+              1 : ["two", "orange"],
+              2 : ["three", "red"]
+            }   
+
+   var w = 300;
+   var h = 50;
+
+      
+    var now = d3.time.hour.utc(new Date);
+    var dataset = [
+        [ 
+            {x: d3.time.hour.utc.offset(now, -5), y: 0}, 
+            {x: d3.time.hour.utc.offset(now, -4), y: 0}, 
+            {x: d3.time.hour.utc.offset(now, -3), y: 2}, 
+            {x: d3.time.hour.utc.offset(now, -2), y: 0}, 
+            {x: d3.time.hour.utc.offset(now, -1), y: 0}, 
+            {x: now, y: 0}
+        ],
+        [
+            {x: d3.time.hour.utc.offset(now, -5), y: 3}, 
+            {x: d3.time.hour.utc.offset(now, -4), y: 1}, 
+            {x: d3.time.hour.utc.offset(now, -3), y: 3}, 
+            {x: d3.time.hour.utc.offset(now, -2), y: 1}, 
+            {x: d3.time.hour.utc.offset(now, -1), y: 5}, 
+            {x: now, y: 1}
+        ],
+        [
+            {x: d3.time.hour.utc.offset(now, -5), y: 2}, 
+            {x: d3.time.hour.utc.offset(now, -4), y: 4}, 
+            {x: d3.time.hour.utc.offset(now, -3), y: 1}, 
+            {x: d3.time.hour.utc.offset(now, -2), y: 2}, 
+            {x: d3.time.hour.utc.offset(now, -1), y: 3}, 
+            {x: now, y: 1}
+        ]
+    ];
+  // add legend   
+
+  var legend = d3.select("#piechart-legend")
+        .append("svg:svg").attr("height", 100).attr("width", 300).append("g")
+    .attr("class", "legend")
+    .attr("x", 25)
+    .attr("y", h-25)
+    .attr("height", 25)
+    .attr("width", 300);
+
+  legend.selectAll('g').data(dataset)
+      .enter()
+      .append('g')
+      .each(function(d, i) {
+        var g = d3.select(this);
+        g.append("rect")
+          .attr("x", i * 70)
+          .attr("y", h-25)
+          .attr("width", 10)
+          .attr("height", 10)
+          .style("fill", color_hash[String(i)][1]);
+        
+        g.append("text")
+          .attr("x", i * 70 + 20)
+          .attr("y", h - 15)
+          .attr("height",30)
+          .attr("width",100)
+          .style("fill", color_hash[String(i)][1])
+          .text(color_hash[String(i)][0]);
+
+      });
     </script>
 {% endblock %}
 
