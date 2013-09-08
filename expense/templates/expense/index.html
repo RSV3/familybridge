@@ -1,5 +1,36 @@
 {% extends "core/base.html" %}
 
 {% block content %}
+  <div class="row">
+    <center>
+      <a href="{% url 'add_multiple_expenses' %}" class="btn btn-success">Add Expenses</a>
+    </center>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-lg-12">
+      <div class="expense-table">
+        <div class="expense-table-menu">
+        </div>
+
+        <div class="expense-table-header">
+        </div>
+
+        <div class="expense-table-items">
+          {% for exp in expenses %}
+            <div class="expense-table-item">
+
+
+            </div>
+          {% endfor %}
+        </div>
+      </div>  <!-- expense-table -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-offset-8 col-sm-4 col-lg-offset-8 col-lg-4">
+      Total Expenses to Date: ${{ total_expenses }}
+    </div>
+  </div>
   {{ current_page }}
 {% endblock %}

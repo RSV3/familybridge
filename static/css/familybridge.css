@@ -200,7 +200,36 @@ footer {
   color: #ffffff;
 }
 
+.reduce-width {
+  width: 90%;
+}
+
+.increase-width {
+  width: 110%;
+}
+
+.reduce-right-padding-0 {
+  padding-right: 0px;
+}
+
+.reduce-left-padding-0 {
+  padding-left: 0px;
+}
+
+
+.reduce-right-padding-10 {
+  padding-right: 10px;
+}
+
+.reduce-left-padding-10 {
+  padding-left: 10px;
+}
+
 .recent-requests {
+}
+
+.align-right {
+  text-align: right;
 }
 
 .recent-requests h4 {

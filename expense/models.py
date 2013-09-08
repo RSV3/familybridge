@@ -25,7 +25,6 @@ class Expense(models.Model):
   timestamp = models.DateTimeField(auto_now_add=True)  
   updated = models.DateTimeField(auto_now=True)
 
-
 class Contribution(models.Model):
   contributor = models.ForeignKey(settings.AUTH_USER_MODEL)
   expense = models.ForeignKey(Expense)
@@ -46,3 +45,14 @@ class Contribution(models.Model):
   def update_contribution(self):
     self.amount = self.expense.amount * float(percentage) / 100.0
     self.save()
+
+  def feed_str(self):
+    owner = self.expense.owner
+    amount = self.expense.amount
+    title = self.expense.title
+    feed_str = "{0} spent ${1} on {2}.".format(owner.first_name, amount, title)
+    return feed_str
+
+  def contribute_str(self):
+    contribute_str = "Contribute ${0} ({1}%)".format(self.amount, self.percentage)
+    return contribute_str

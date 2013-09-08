@@ -10,6 +10,5 @@ urlpatterns = patterns('',
     url(r'^mark/paid/(?P<payment_id>\d+)/$', 'core.views.mark_paid', name='mark_paid'),
     url(r'^payments/$', 'core.views.payments', name='payments'),
     url(r'^expense/add/$', 'core.views.add_expense', name='add_expense'),
-    url(r'^expenses/$', 'core.views.expenses', name='expenses'),
     url(r'^change/group/name/(?P<group_id>\d+)/$', 'core.views.change_group_name', name='change_group_name'),
 )

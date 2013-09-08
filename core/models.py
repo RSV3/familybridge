@@ -57,5 +57,10 @@ class EmailUser(AbstractBaseUser, PermissionsMixin):
     return self.first_name
 
   def __unicode__(self):
-    return self.email
+    if self.first_name:
+      return self.first_name
+    else:
+      return self.email
+
+
 

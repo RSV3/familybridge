@@ -77,7 +77,6 @@ class FrontSignUpForm(UserCreationForm):
 
     signup_field_width = 370
 
-
     self.fields['first_name'].widget.attrs['class'] = 'form-control input-lg'
     #self.fields['first_name'].widget.attrs['style'] = 'width:%dpx;' % (signup_field_width/2)
     self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'

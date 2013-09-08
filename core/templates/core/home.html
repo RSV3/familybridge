@@ -1,18 +1,19 @@
 {% extends "core/base.html" %}
 
 {% load staticfiles %}
+{% load add_class %}
 
 {% block title %}
 Family Bridge Home
 {% endblock %}
 
 {% block additional_styles %}
-    <style type="text/css">
-        .slice text {
-            font-size: 16pt;
-            font-family: Arial;
-        }   
-    </style>
+  <style type="text/css">
+    .slice text {
+        font-size: 16pt;
+        font-family: Arial;
+    }   
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -43,21 +44,54 @@ Family Bridge Home
         <div class="form-group">
           <input class="form-control" id="id_date" name="date" type="date">
         </div>
+         <div class="form-group">
+          <div class="row">
+            <div class="reduce-right-padding-0 col-sm-9 col-lg-9">
+              {{ add_expense_form.amount }}
+            </div>
+            <div class="reduce-left-padding-0 reduce-right-padding-0 align-right col-sm-2 col-lg-2">
+              <button class="btn btn-default"><i class="icon-paper-clip"></i></button>
+            </div>
+          </div>
+        </div>       
+        <div class="form-group">
+          {{ add_expense_form.title }}
+        </div>
+        <div class="form-group">
+          {{ add_expense_form.description }}
+        </div>
+        <div class="form-group">
+          {{ add_expense_form.category }}
+        </div>
+
+        {{ contributors_formset.management_form }}
+        <div id="contributor-list">
+          {% for add_contributor_form in contributors_formset %}
+            {{ add_contributor_form.id }}
+            <div class="form-group">
+              <div class="row">
+                <div class="reduce-right-padding-0 col-sm-5 col-lg-5">
+                  {{ add_contributor_form.contributor }}
+                </div>
+                {% if contributors_formset.can_delete %}
+                  <div class="reduce-left-padding-10 reduce-right-padding-0 col-sm-5 col-lg-5">
+                    {{ add_contributor_form.percentage }}
+                  </div>
+                  <div class="reduce-left-padding-10 col-sm-1 col-lg-1">
+                    <i class="icon-remove icon-2x"></i>
+                  </div>
+                {% else %}
+                  <div class="reduce-left-padding-10 col-sm-6 col-lg-6">
+                    {{ add_contributor_form.percentage }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
 
         <div class="form-group">
-        {{ add_expense_form.amount }}
-        </div>
-        <div class="form-group">
-        {{ add_expense_form.title }}
-        </div>
-        <div class="form-group">
-        {{ add_expense_form.description }}
-        </div>
-        <div class="form-group">
-        {{ add_expense_form.category }}
-        </div>
-        <div class="form-group">
-        <button type="button" class="btn btn-default btn-block"><i class="glyphicon glyphicon-plus"></i> Add Contributor</button>
+        <button type="button" id="add-contributor" class="btn btn-default btn-block"><i class="glyphicon glyphicon-plus"></i> Add Contributor</button>
         </div>
         <div class="form-group">
           <center>
@@ -71,7 +105,27 @@ Family Bridge Home
   <div class="col-sm-4 col-lg-4">
     <div class="recent-requests grey-area">
       <h4>Recent Requests</h4>
+      {% if recent_requests %}
+        {% for req in recent_requests %}
+          <div class="feed-item">
+            <div class="feed-content">
+              {{ req.feed_str }}
+            </div>
+            <div class="contribute-content">
+              {{ req.contribute_str }}
+            </div>
+            <div class="feed-actions">
+              <i class="icon-comments"></i>
+              <i class="icon-remove"></i>
+            </div>
+            <div class="feed-contribute">
+              <button class="btn btn-warning">Contribute</button>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
       There are no recent requests.
+      {% endif %}
     </div>
   </div>
 
@@ -123,121 +177,139 @@ Family Bridge Home
 {% endblock %}
 
 {% block additional_scripts %}
-    <script type="text/javascript" src="{% static "d3/d3.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "d3/d3.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/string-format.min.js" %}"></script>
 
-    <script type="text/javascript">
- 
-    var w = 300,                        //width
-    h = 400,                            //height
-    r = 150,                            //radius
-    color = d3.scale.category20c();     //builtin range of colors
- 
-    data = [{"label":"one", "value":20}, 
-            {"label":"two", "value":50}, 
-            {"label":"three", "value":30}];
-    
-    var vis = d3.select("#piechart")
-        .append("svg:svg")              //create the SVG element inside the <body>
-        .data([data])                   //associate our data with the document
-            .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
-            .attr("height", h)
-        .append("svg:g")                //make a group to hold our pie chart
-            .attr("transform", "translate(" + r + "," + r + ")")    //move the center of the pie chart from 0, 0 to radius, radius
- 
-    var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
-        .outerRadius(r);
- 
-    var pie = d3.layout.pie()           //this will create arc data for us given a list of values
-        .value(function(d) { return d.value; });    //we must tell it out to access the value of each element in our data array
- 
-    var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
-        .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
-        .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
-            .append("svg:g")                //create a group to hold each slice (we will have a <path> and a <text> element associated with each slice)
-                .attr("class", "slice");    //allow us to style things in the slices (like text)
- 
-        arcs.append("svg:path")
-                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
-                .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
- 
-        arcs.append("svg:text")                                     //add a label to each slice
-                .attr("transform", function(d) {                    //set the label's origin to the center of the arc
-                //we have to make sure to set these before calling arc.centroid
-                d.innerRadius = 0;
-                d.outerRadius = r;
-                return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
-            })
-            .attr("text-anchor", "middle")                          //center the text on it's origin
-            .text(function(d, i) { return data[i].label; });        //get the label from our original data array
-        
-    var color_hash = {  0 : ["one", "green"],
-              1 : ["two", "orange"],
-              2 : ["three", "red"]
-            }   
+  <script type="text/javascript">
 
-   var w = 300;
-   var h = 50;
+  var w = 300,                        //width
+  h = 400,                            //height
+  r = 150,                            //radius
+  color = d3.scale.category20c();     //builtin range of colors
 
+  data = [{"label":"one", "value":20}, 
+          {"label":"two", "value":50}, 
+          {"label":"three", "value":30}];
+  
+  var vis = d3.select("#piechart")
+      .append("svg:svg")              //create the SVG element inside the <body>
+      .data([data])                   //associate our data with the document
+          .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
+          .attr("height", h)
+      .append("svg:g")                //make a group to hold our pie chart
+          .attr("transform", "translate(" + r + "," + r + ")")    //move the center of the pie chart from 0, 0 to radius, radius
+
+  var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
+      .outerRadius(r);
+
+  var pie = d3.layout.pie()           //this will create arc data for us given a list of values
+      .value(function(d) { return d.value; });    //we must tell it out to access the value of each element in our data array
+
+  var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
+      .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
+      .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
+          .append("svg:g")                //create a group to hold each slice (we will have a <path> and a <text> element associated with each slice)
+              .attr("class", "slice");    //allow us to style things in the slices (like text)
+
+      arcs.append("svg:path")
+              .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
+              .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+
+      arcs.append("svg:text")                                     //add a label to each slice
+              .attr("transform", function(d) {                    //set the label's origin to the center of the arc
+              //we have to make sure to set these before calling arc.centroid
+              d.innerRadius = 0;
+              d.outerRadius = r;
+              return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
+          })
+          .attr("text-anchor", "middle")                          //center the text on it's origin
+          .text(function(d, i) { return data[i].label; });        //get the label from our original data array
       
-    var now = d3.time.hour.utc(new Date);
-    var dataset = [
-        [ 
-            {x: d3.time.hour.utc.offset(now, -5), y: 0}, 
-            {x: d3.time.hour.utc.offset(now, -4), y: 0}, 
-            {x: d3.time.hour.utc.offset(now, -3), y: 2}, 
-            {x: d3.time.hour.utc.offset(now, -2), y: 0}, 
-            {x: d3.time.hour.utc.offset(now, -1), y: 0}, 
-            {x: now, y: 0}
-        ],
-        [
-            {x: d3.time.hour.utc.offset(now, -5), y: 3}, 
-            {x: d3.time.hour.utc.offset(now, -4), y: 1}, 
-            {x: d3.time.hour.utc.offset(now, -3), y: 3}, 
-            {x: d3.time.hour.utc.offset(now, -2), y: 1}, 
-            {x: d3.time.hour.utc.offset(now, -1), y: 5}, 
-            {x: now, y: 1}
-        ],
-        [
-            {x: d3.time.hour.utc.offset(now, -5), y: 2}, 
-            {x: d3.time.hour.utc.offset(now, -4), y: 4}, 
-            {x: d3.time.hour.utc.offset(now, -3), y: 1}, 
-            {x: d3.time.hour.utc.offset(now, -2), y: 2}, 
-            {x: d3.time.hour.utc.offset(now, -1), y: 3}, 
-            {x: now, y: 1}
-        ]
-    ];
-  // add legend   
+  var color_hash = {  0 : ["one", "green"],
+            1 : ["two", "orange"],
+            2 : ["three", "red"]
+          }   
 
-  var legend = d3.select("#piechart-legend")
-        .append("svg:svg").attr("height", 100).attr("width", 300).append("g")
-    .attr("class", "legend")
-    .attr("x", 25)
-    .attr("y", h-25)
-    .attr("height", 25)
-    .attr("width", 300);
+ var w = 300;
+ var h = 50;
 
-  legend.selectAll('g').data(dataset)
-      .enter()
-      .append('g')
-      .each(function(d, i) {
-        var g = d3.select(this);
-        g.append("rect")
-          .attr("x", i * 70)
-          .attr("y", h-25)
-          .attr("width", 10)
-          .attr("height", 10)
-          .style("fill", color_hash[String(i)][1]);
-        
-        g.append("text")
-          .attr("x", i * 70 + 20)
-          .attr("y", h - 15)
-          .attr("height",30)
-          .attr("width",100)
-          .style("fill", color_hash[String(i)][1])
-          .text(color_hash[String(i)][0]);
+    
+  var now = d3.time.hour.utc(new Date);
+  var dataset = [
+      [ 
+          {x: d3.time.hour.utc.offset(now, -5), y: 0}, 
+          {x: d3.time.hour.utc.offset(now, -4), y: 0}, 
+          {x: d3.time.hour.utc.offset(now, -3), y: 2}, 
+          {x: d3.time.hour.utc.offset(now, -2), y: 0}, 
+          {x: d3.time.hour.utc.offset(now, -1), y: 0}, 
+          {x: now, y: 0}
+      ],
+      [
+          {x: d3.time.hour.utc.offset(now, -5), y: 3}, 
+          {x: d3.time.hour.utc.offset(now, -4), y: 1}, 
+          {x: d3.time.hour.utc.offset(now, -3), y: 3}, 
+          {x: d3.time.hour.utc.offset(now, -2), y: 1}, 
+          {x: d3.time.hour.utc.offset(now, -1), y: 5}, 
+          {x: now, y: 1}
+      ],
+      [
+          {x: d3.time.hour.utc.offset(now, -5), y: 2}, 
+          {x: d3.time.hour.utc.offset(now, -4), y: 4}, 
+          {x: d3.time.hour.utc.offset(now, -3), y: 1}, 
+          {x: d3.time.hour.utc.offset(now, -2), y: 2}, 
+          {x: d3.time.hour.utc.offset(now, -1), y: 3}, 
+          {x: now, y: 1}
+      ]
+  ];
+// add legend   
 
-      });
-    </script>
+var legend = d3.select("#piechart-legend")
+      .append("svg:svg").attr("height", 100).attr("width", 300).append("g")
+  .attr("class", "legend")
+  .attr("x", 25)
+  .attr("y", h-25)
+  .attr("height", 25)
+  .attr("width", 300);
+
+legend.selectAll('g').data(dataset)
+    .enter()
+    .append('g')
+    .each(function(d, i) {
+      var g = d3.select(this);
+      g.append("rect")
+        .attr("x", i * 70)
+        .attr("y", h-25)
+        .attr("width", 10)
+        .attr("height", 10)
+        .style("fill", color_hash[String(i)][1]);
+      
+      g.append("text")
+        .attr("x", i * 70 + 20)
+        .attr("y", h - 15)
+        .attr("height",30)
+        .attr("width",100)
+        .style("fill", color_hash[String(i)][1])
+        .text(color_hash[String(i)][0]);
+
+    });
+
+
+    // for handling additional contributors, allow adding contributor up to number
+    // of members in the group
+    $("#add-contributor").click(function () {
+      var total_forms = parseInt($("#id_form-TOTAL_FORMS").attr('value'));
+      $("#id_form-TOTAL_FORMS").attr('value', total_forms+1);
+      // add new forms
+      $.get("{% url 'expense:add_contributor_mixin' %}", {new_form_id: total_forms}, function (data) {
+        if (data["result"] == 1) {
+          $("#contributor-list").append(data['contributor_form']);
+        } else {
+          return;
+        }
+      })
+    });
+
+  </script>
 {% endblock %}
 
 {% block footer %}

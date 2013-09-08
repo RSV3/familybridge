@@ -5,9 +5,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from django.forms.formsets import formset_factory
 
+from expense.models import Expense, Contribution
 from core.forms import TopLoginForm, FrontSignUpForm
-from expense.forms import AddExpenseForm, ContributeForm
+from expense.forms import AddExpenseForm, AddContributorForm 
 
 
 def index(request):
@@ -91,6 +93,11 @@ def home(request, group_id=None):
   data["add_expense_form"] = add_expense_form
   data["total_expense"] = 0
 
+  AddContributorsFormset = formset_factory(AddContributorForm, can_delete=True)
+  data["contributors_formset"] = AddContributorsFormset()
+
+  data["recent_requests"] = Contribution.objects.filter(contributor=u)
+
   return render(request, "core/home.html", data)
 
 @login_required
@@ -125,18 +132,6 @@ def add_expense(request):
 
 
   return render(request, "core/add_expense.html", data)
-
-@login_required
-def expenses(request):
-  """
-    Shows the list/history of expenses
-
-    Allow filter by month and by people 
-  """
-
-  data = {}
-
-  return render(request, "core/expenses.html", data)
 
 @login_required
 def payments(request):
@@ -192,5 +187,6 @@ def about(request):
   data["current_page"] = "about"
 
   return render(request, "core/about.html", data)
+
 
 
