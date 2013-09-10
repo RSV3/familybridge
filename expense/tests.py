@@ -3,6 +3,7 @@ from django.test import Client
 from django.core.urlresolvers import reverse
 
 from datetime import date
+from django.contrib.auth.models import Group
 from core.models import EmailUser
 # Create your tests here.
 
@@ -28,6 +29,13 @@ class ExpenseTestCase(TestCase):
     jason_johnson.save()
     jason_johnson.set_password('hello')
     jason_johnson.save()
+
+    g = Group(name='johnson_family')
+    g.save()
+
+    pam_johnson.groups.add(g)
+    sue_johnson.member_groups.add(g)
+    jason_johnson.member_groups.add(g)
 
     # create expenses by users
     # and add contributions 
@@ -64,25 +72,29 @@ class ExpenseTestCase(TestCase):
     contrib.save()
 
 
+  def runTest(self):
+    pass
+
+
   def test_add_expenses(self):
     """
       Adding a single expense
     """
 
+    self.assertEquals(EmailUser.objects.get(email='pam.johnson@gmail.com').email, 'pam.johnson@gmail.com')
     # login
-    response = self.client.post(reverse('login'), {'email': 'pam.johnson@gmail.com',
+    response = self.client.post(reverse('login'), {'username': 'pam.johnson@gmail.com',
                                                     'password': 'hello' })
 
-    self.assertRedirect(response, reverse('core:home'))
+    self.assertRedirects(response, reverse('core:home'))
 
     # add an expense with no receipt
-    self.client.post(reverse('add_expense'), {
+    self.client.post(reverse('expense:add_expense'), {
         'date': '8/27/2013',
         'amount': 73.00,
         'title': 'Dinner with Mom',
         'description': 'Wednesday regular dinners',
         'category': 5,
-
     })
 
     # add an expense with receipt
@@ -92,8 +104,6 @@ class ExpenseTestCase(TestCase):
 
 
     # add an expense with more than one contributor
-
-    pass
 
 
   def test_add_multiple_expenses(self):

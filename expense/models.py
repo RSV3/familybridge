@@ -25,6 +25,10 @@ class Expense(models.Model):
   timestamp = models.DateTimeField(auto_now_add=True)  
   updated = models.DateTimeField(auto_now=True)
 
+  def contributors(self):
+    return self.contribution_set.all()
+
+
 class Contribution(models.Model):
   contributor = models.ForeignKey(settings.AUTH_USER_MODEL)
   expense = models.ForeignKey(Expense)
@@ -56,3 +60,18 @@ class Contribution(models.Model):
   def contribute_str(self):
     contribute_str = "Contribute ${0} ({1}%)".format(self.amount, self.percentage)
     return contribute_str
+
+  def contributed_exists(self):
+    return self.expense.contribution_set.filter(contributed__isnull=False).exists()
+
+  def contributed_users(self):
+    return self.expense.contribution_set.filter(contributed__isnull=False)
+
+  def requested_exists(self):
+    return self.expense.contribution_set.filter(contributed__isnull=True).exists()
+
+  def requested_users(self):
+    """
+      People who have been requested but not yet contributed
+    """
+    return self.expense.contribution_set.filter(contributed__isnull=True)

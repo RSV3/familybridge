@@ -72,6 +72,7 @@ INSTALLED_APPS = (
   'django.contrib.staticfiles',
   # Uncomment the next line to enable admin documentation:
   'django.contrib.admindocs',
+  'django.contrib.humanize',
   #'south',
   'sorl.thumbnail',
   #'storages',
@@ -178,6 +179,7 @@ ADMINS = (
 )
 
 AUTH_USER_MODEL = 'core.EmailUser'
+LOGIN_REDIRECT_URL = '/home/'
 
 # keep this at the bottom
 try:

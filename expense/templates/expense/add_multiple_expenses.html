@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'expense:add_multiple_expenses' %}">
+  <div class="row">
+    <div class="grey-area">
+      <h3>Upload Multiple Expenses</h3>
+      <div class="col-sm-3 col-lg-3">
+        <div class="green-area">
+        </div>
+      </div>
+      <div class="col-sm-3 col-lg-3">
+        <div class="green-area">
+        </div>
+      </div> 
+      <div class="col-sm-3 col-lg-3">
+        <div class="green-area">
+        </div>
+      </div> 
+      <div class="col-sm-3 col-lg-3">
+        <div class="green-area">
+        </div>
+      </div>  
+    </div>
+  </div>
+
+  <p></p>
+  <div class="row">
+  <div class="pull-right">
+    <a href="{% url 'expense:index' %}" class="btn btn-default">Return to Expenses</a>
+    <input type="submit" class="btn btn-success" name="Save" value="Save Expenses">
+  </div>
+  </div>
+</form>
+{% endblock %}
+
+{% block additional_scripts %}
+
+{% endblock %}

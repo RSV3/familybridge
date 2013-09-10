@@ -78,7 +78,7 @@ def home(request, group_id=None):
       if active_group not in u.member_groups.all():
         raise Http404 
   else:
-    active_group = u.groups.all()[0]
+    active_group = u.groups.all()[0] if u.groups.all().exists() else None
     if active_group:
       group_owner = True
     else:

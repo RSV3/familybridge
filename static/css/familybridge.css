@@ -48,14 +48,6 @@ body {
   margin-top: 10px;
 }
 
-#center-sign-up-form {
-  width: 500px; margin: 200px auto 0 auto;
-}
-
-#center-sign-up-form h1 {
-  text-align: center;
-}
-
 /* separate the menus */
 .navbar-nav > li {
   margin-right: 20px;
@@ -81,6 +73,17 @@ body {
   color: rgb(80, 154, 255);
 }
 
+.pagination {
+  margin: 5px 0px;
+}
+
+#center-sign-up-form {
+  width: 500px; margin: 200px auto 0 auto;
+}
+
+#center-sign-up-form h1 {
+  text-align: center;
+}
 
 /* Set the position and dimensions of the background image. */
 #bg {
@@ -253,9 +256,56 @@ footer {
   border-radius: 5px; 
 }
 
-.center-align {
+.green-area {
+  background: rgb(177, 221, 140);
+  padding: 1px 5px 1px 5px;
+  color: rgb(122, 122, 122);
+  min-height: 500px;
+  height: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; 
 }
 
+.pic-empty-icon {
+  padding-top: 3px; 
+  width:25px; 
+  height:25px; 
+  text-align: center; 
+  color: #FFFFFF; 
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.pic-empty-large {
+  padding-top: 3px; 
+  width:100px; 
+  height:100px; 
+  text-align: center; 
+  color: #FFFFFF;  
+}
+
+.contribution-header {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #ffffff;  
+  padding: 3px 10px;
+  font-size: 1.2em;
+}
+
+.contribution-card {
+  font-size: 0.85em;
+}
+
+.contribution-body {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.contribution-amount {
+  margin-top: 5px;
+}
 .total-expense-cost {
   color: rgb(67, 141, 251);
 }

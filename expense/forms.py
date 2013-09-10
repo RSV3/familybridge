@@ -1,5 +1,6 @@
 from django import forms
 from expense.models import Expense, Contribution
+from core.models import EmailUser
 
 class AddExpenseForm(forms.ModelForm):
 
@@ -63,3 +64,21 @@ class AddContributorForm(forms.ModelForm):
 
     self.fields['contributor'].widget.attrs['class'] = 'form-control'
     self.fields['percentage'].widget.attrs['class'] = 'form-control'
+
+
+class AddTeamMemberForm(forms.ModelForm):
+
+  class Meta:
+    model = EmailUser
+    fields = ['first_name', 'last_name', 'email']
+
+  def __init__(self, *args, **kwargs):
+    super(AddTeamMemberForm, self).__init__(*args, **kwargs)
+
+    self.fields['first_name'].widget.attrs['class'] = 'form-control'
+    self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'
+    self.fields['last_name'].widget.attrs['class'] = 'form-control'
+    self.fields['last_name'].widget.attrs['placeholder'] = 'Last Name'
+    self.fields['email'].widget.attrs['class'] = 'form-control'
+    self.fields['email'].widget.attrs['placeholder'] = 'E-mail'
+

@@ -11,10 +11,10 @@ urlpatterns = patterns('',
     # Examples:
     #url(r'^account/password_reset/', 'django.contrib.auth.views.password_reset', {'html_email_template_name': 'registration/password_reset_html_email.html'}),
     url(r'^account/', include('django.contrib.auth.urls')),
-    (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'core/index.html',
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'core/index.html',
                                                         'authentication_form': TopLoginForm,
                                                         'extra_context': {'signup_form': FrontSignUpForm()}
-                                                        }),
+                                                        }, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
     url(r'^signup/$', 'core.views.sign_up', name='signup'),
     # url(r'^blog/', include('blog.urls')),

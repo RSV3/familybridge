@@ -33,7 +33,7 @@ Family Bridge Home
   -->
 
   <div class="col-sm-3 col-lg-3">
-    <a href="{% url 'expense:add_contributors' %}" class="btn btn-info btn-lg btn-block">Add Contributors</a>
+    <a href="{% url 'expense:add_teammembers' %}" class="btn btn-info btn-lg btn-block">Add Contributors</a>
     <a href="{% url 'expense:add_bank_card' %}" class="btn btn-success btn-lg btn-block">Add Bank Card</a>
     <a href="{% url 'expense:add_multiple_expenses' %}" class="btn btn-success btn-lg btn-block">Multiple Expenses</a>
       <div class="add-expense-form">
@@ -178,7 +178,6 @@ Family Bridge Home
 
 {% block additional_scripts %}
   <script type="text/javascript" src="{% static "d3/d3.min.js" %}"></script>
-  <script type="text/javascript" src="{% static "js/string-format.min.js" %}"></script>
 
   <script type="text/javascript">
 
@@ -304,9 +303,10 @@ legend.selectAll('g').data(dataset)
         if (data["result"] == 1) {
           $("#contributor-list").append(data['contributor_form']);
         } else {
-          return;
+          return false;
         }
-      })
+      });
+      return false;
     });
 
   </script>

@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group
+from sorl.thumbnail import ImageField
+import random
+
 
 class EmailUserManager(BaseUserManager):
 
@@ -35,6 +38,9 @@ class EmailUser(AbstractBaseUser, PermissionsMixin):
   date_of_birth = models.DateField(blank=True, null=True)
   is_active = models.BooleanField(default=True)
   is_staff = models.BooleanField(default=False)
+  pic = ImageField(upload_to='profile/pics/')
+
+  background_color = models.CharField(max_length=7, blank=True, null=True) 
 
   date_joined = models.DateTimeField(auto_now_add=True)
 
@@ -49,6 +55,20 @@ class EmailUser(AbstractBaseUser, PermissionsMixin):
 
   objects = EmailUserManager()
   USERNAME_FIELD = 'email'
+
+  @property
+  def first_name_initial(self):
+    return self.first_name[:1] if self.first_name else '?'
+
+  def get_background_color(self):
+    if self.background_color:
+      return self.background_color
+    else:
+      r = lambda: random.randint(0, 255)
+      self.background_color = "#%02X%02X%02X" % (r(), r(), r())
+      self.save()
+
+    return self.background_color
 
   def get_full_name(self):
     return '{0} {1}'.format(self.first_name, self.last_name)
