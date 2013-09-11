@@ -5,23 +5,75 @@
 <form method="POST" action="{% url 'expense:add_multiple_expenses' %}">
   <div class="row">
     <div class="grey-area">
-      <h3>Upload Multiple Expenses</h3>
-      <div class="col-sm-3 col-lg-3">
-        <div class="green-area">
-        </div>
+      <div class="col-sm-12 col-lg-12">
+        <h4>Upload Multiple Expenses</h4>
       </div>
-      <div class="col-sm-3 col-lg-3">
-        <div class="green-area">
+      <form action="" method="POST">
+        {% csrf_token %}
+        {{ add_expense_formset.management_form }}
+
+        {% for add_expense_form in add_expense_formset %}
+        <div class="col-sm-3 col-lg-3">
+          <div class="green-area">
+            <div class="form-group">
+              <input class="form-control" id="id_date" name="date" type="date">
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="reduce-right-padding-0 col-sm-9 col-lg-9">
+                  {{ add_expense_form.amount }}
+                </div>
+                <div class="reduce-left-padding-0 reduce-right-padding-0 align-right col-sm-2 col-lg-2">
+                  <button class="btn btn-default"><i class="icon-paper-clip"></i></button>
+                </div>
+              </div>
+            </div>       
+
+            <div class="form-group">
+              {{ add_expense_form.title }}
+            </div>
+            <div class="form-group">
+              {{ add_expense_form.description }}
+            </div>
+            <div class="form-group">
+              {{ add_expense_form.category }}
+            </div>
+
+            {{ contributors_formset.management_form }}
+            <div id="contributor-list">
+              {% for add_contributor_form in contributors_formset %}
+                {{ add_contributor_form.id }}
+                <div class="form-group">
+                  <div class="row">
+                    <div class="reduce-right-padding-0 col-sm-5 col-lg-5">
+                      {{ add_contributor_form.contributor }}
+                    </div>
+                    {% if contributors_formset.can_delete %}
+                      <div class="reduce-left-padding-10 reduce-right-padding-0 col-sm-5 col-lg-5">
+                        {{ add_contributor_form.percentage }}
+                      </div>
+                      <div class="reduce-left-padding-10 col-sm-1 col-lg-1">
+                        <i class="icon-remove icon-2x"></i>
+                      </div>
+                    {% else %}
+                      <div class="reduce-left-padding-10 col-sm-6 col-lg-6">
+                        {{ add_contributor_form.percentage }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="form-group">
+              <button type="button" id="add-contributor" class="btn btn-default btn-block"><i class="glyphicon-pluslyphicon glyphicon-plus"></i> Add Contributor</button>
+            </div>          
+          </div> <!-- green-area -->
         </div>
-      </div> 
-      <div class="col-sm-3 col-lg-3">
-        <div class="green-area">
-        </div>
-      </div> 
-      <div class="col-sm-3 col-lg-3">
-        <div class="green-area">
-        </div>
-      </div>  
+
+        {% endfor %}
+      </form>
     </div>
   </div>
 

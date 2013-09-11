@@ -8,22 +8,22 @@ from core.forms import TopLoginForm, FrontSignUpForm
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    #url(r'^account/password_reset/', 'django.contrib.auth.views.password_reset', {'html_email_template_name': 'registration/password_reset_html_email.html'}),
-    url(r'^account/', include('django.contrib.auth.urls')),
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'core/index.html',
-                                                        'authentication_form': TopLoginForm,
-                                                        'extra_context': {'signup_form': FrontSignUpForm()}
-                                                        }, name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
-    url(r'^signup/$', 'core.views.sign_up', name='signup'),
-    # url(r'^blog/', include('blog.urls')),
+  # Examples:
+  #url(r'^account/password_reset/', 'django.contrib.auth.views.password_reset', {'html_email_template_name': 'registration/password_reset_html_email.html'}),
+  url(r'^account/', include('django.contrib.auth.urls')),
+  url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'core/index.html',
+                                                      'authentication_form': TopLoginForm,
+                                                      'extra_context': {'signup_form': FrontSignUpForm()}
+                                                      }, name='login'),
+  url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
+  url(r'^signup/$', 'core.views.sign_up', name='signup'),
+  # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+  url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^mobile/', include('mobile.urls', namespace='mobile')),
-    url(r'^expense/', include('expense.urls', namespace='expense')),
-    url(r'^settings/', include('setup.urls', namespace='setup')),
-    url(r'^support/', include('support.urls', namespace='support')),
-    url(r'^', include('core.urls', namespace='core')),
+  url(r'^mobile/', include('mobile.urls', namespace='mobile')),
+  url(r'^expense/', include('expense.urls', namespace='expense')),
+  url(r'^settings/', include('setup.urls', namespace='setup')),
+  url(r'^support/', include('support.urls', namespace='support')),
+  url(r'^', include('core.urls', namespace='core')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

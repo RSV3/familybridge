@@ -10,7 +10,7 @@ import json
 
 from expense.models import Expense, Contribution
 from core.models import EmailUser
-from expense.forms import AddTeamMemberForm
+from expense.forms import AddTeamMemberForm, AddExpenseForm, AddContributorForm
 
 
 
@@ -107,6 +107,12 @@ def add_multiple_expenses(request):
 
   data["current_page"] = "expense"
 
+  AddExpenseFormset = formset_factory(AddExpenseForm, can_delete=True, extra=4, max_num=4)
+  data["add_expense_formset"] = AddExpenseFormset()
+
+  AddContributorsFormset = formset_factory(AddContributorForm, can_delete=True)
+  data["contributors_formset"] = AddContributorsFormset()
+
   return render(request, "expense/add_multiple_expenses.html", data)
 
 
@@ -145,3 +151,16 @@ def requested_contributions(request):
   data["contributions"] = Contribution.objects.filter(contributor=u)[:4]
   return render(request, "expense/requested_contributions.html", data)
 
+@login_required
+def contribute_to_contribution(request):
+
+  data = {}
+  u = request.user
+  return render(request, "expense/requested_contributions.html", data)
+
+@login_required
+def decline_contribution(request):
+
+  data = {}
+  u = request.user
+  return render(request, "expense/requested_contributions.html", data)
