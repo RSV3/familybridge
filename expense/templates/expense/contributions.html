@@ -3,53 +3,56 @@
 {% load thumbnail %}
 
 {% block content %}
-<div class="grey-area">
-  <h4>Current Care Balances</h4>
+<div class="row grey-area">
+  <div class="col-sm-12 col-lg-12">
+    <h4>Current Care Balances</h4>
 
-  {% for owe in care_balances %}
-  {% endfor %}
-  <div class="row">
-    <div class="col-sm-3 col-lg-3">
-      {% thumbnail c.contributor.pic "100x100" as im %}
-        <img src="{{ im.url }}" width="{{ im.x }}" height="{{ im.y }}">
-      {% empty %}
-        <div class="pic-empty-large" style="background-color:{{ c.contributor.background_color }};">
-          {{ c.contributor.first_name_initial }}
+    {% for owe in care_balances %}
+    {% endfor %}
+    <div class="row">
+      <div class="col-sm-3 col-lg-3">
+        {% thumbnail c.contributor.pic "100x100" as im %}
+          <img src="{{ im.url }}" width="{{ im.x }}" height="{{ im.y }}">
+        {% empty %}
+          <div class="pic-empty-large" style="background-color:{{ c.contributor.background_color }};">
+            {{ c.contributor.first_name_initial }}
+          </div>
+        {% endthumbnail %}      
+      </div>
+      <div class="col-sm-5 col-lg-5">
+        <div class="row">
+          <div class="col-sm-6 col-lg-6">
+            You owe Jeff:
+          </div>
+          <div class="col-sm-6 col-lg-6 pull-right">
+            $230.55
+          </div>
         </div>
-      {% endthumbnail %}      
-    </div>
-    <div class="col-sm-5 col-lg-5">
-      <div class="row">
-        <div class="col-sm-6 col-lg-6">
-          You owe Jeff:
+        <div class="row">
+          <div class="col-sm-6 col-lg-6">
+            You owe Jeff:
+          </div>
+          <div class="col-sm-6 col-lg-6 pull-right">
+            $230.55
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-6 pull-right">
-          $230.55
+        <div class="row">
+          <div class="col-sm-6 col-lg-6">
+            You owe Jeff:
+          </div>
+          <div class="col-sm-6 col-lg-6 pull-right">
+            $230.55
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-6 col-lg-6">
-          You owe Jeff:
+      <div class="col-sm-4 col-lg-4">
+        <div class="btn btn-lg btn-success">
+          Contribute to<br>Jeff's Expenses
         </div>
-        <div class="col-sm-6 col-lg-6 pull-right">
-          $230.55
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-lg-6">
-          You owe Jeff:
-        </div>
-        <div class="col-sm-6 col-lg-6 pull-right">
-          $230.55
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4 col-lg-4">
-      <div class="btn btn-lg btn-success">
-        Contribute to<br>Jeff's Expenses
       </div>
     </div>
   </div>
+</div>
 </div>
 <p></p>
 <div class="row">
